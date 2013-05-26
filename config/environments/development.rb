@@ -33,5 +33,14 @@ Leafy::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
+
+  config.assets.paths << "#{Rails.root}/app/assets/paperclip"
+
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+  Paperclip::Attachment.default_options[:url] = "/assets/:class/:attachment/:id_partition/:style/:filename"
+  Paperclip::Attachment.default_options[:path] = ":rails_root/app/assets/paperclip/:class/:attachment/:id_partition/:style/:filename"
+
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end

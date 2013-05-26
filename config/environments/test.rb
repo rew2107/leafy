@@ -34,4 +34,11 @@ Leafy::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+  Paperclip::Attachment.default_options[:url] = "/paperclip/:class/:attachment/:id_partition/:style/:filename"
+  Paperclip::Attachment.default_options[:path] = ":rails_root/tmp/test:url" 
+
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = {:host => 'www.example.com'}
 end
