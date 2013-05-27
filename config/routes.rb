@@ -5,6 +5,7 @@ Leafy::Application.routes.draw do
     root :to => 'home#index'
   end
 
-  root :to => redirect("/users/sign_up")
-
+  devise_scope :user do
+    root :to => "devise/registrations#new"
+  end
 end
