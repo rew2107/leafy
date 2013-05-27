@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require_tree .
+//= require jquery.isolatepage.min
+//= require jquery.validate.js
+//= require_tree ./global
+//= require_tree ./app
