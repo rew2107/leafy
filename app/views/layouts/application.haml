@@ -19,9 +19,7 @@
         .border-top
     #main{:role => "main"}
       .container
-        .row
-          = render 'layouts/messages'
-        .row
-          = yield
+        = render 'layouts/messages'
+        = yield
         %footer
 

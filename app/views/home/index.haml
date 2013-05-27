@@ -1,7 +1,10 @@
-#main_pic
-  .promo.span3
-    .heading Leafy.
-    Barter Cat
-    .register_box
-      .headbox Sign up. Wakeup Makeup.
+.row.center
+  .well.fullspan
+    .span10
+      .span3= image_tag current_user.photo.url(:thumb), :class => 'img-polaroid'
+      .span6
+        %h2= current_user.fullname || '?????'
+        %p This is your description or something like that
+        %p
+          =link_to 'Edit your profile', edit_user_registration_path, :class => 'btn btn-success'
 
