@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag :application, :media => "all"
+    = javascript_include_tag :application, :media => "all"
+    %meta{:charset => "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %title= content_for?(:title) ? yield(:title) : "leafy"
+    %meta{:content => "barter", :name => "description"}
+    %meta{:content => "nolan frausto", :name => "author"}
+    = csrf_meta_tags
+    = yield(:head)
+  %body{:id => controller_path.gsub('/','_')}
+    %header.navbar.navbar-static-top#main_nav
+      %nav
+        .container
+          = render 'layouts/navigation'
+        .border-top
+    #main{:role => "main"}
+      .container
+        .row
+          = render 'layouts/messages'
+        .row
+          = yield
+        %footer
+

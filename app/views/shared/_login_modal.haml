@@ -1,0 +1,22 @@
+.modal.hide{:id=>"login_modal", :tabindex=>"-1", :role=>"dialog", :'aria-labelledby'=>"myModalLabel", :'aria-hidden'=>"true"}
+  .modal-header
+    %button{:type=>"button", :class=>"close", :'data-dismiss'=>"modal", :'aria-hidden' => "true"}
+      &times;
+    %h3 Login!
+  .modal-body
+    #email_signin
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+        .row
+          .span3.control-group
+            = f.label :email, {:class => 'control-label', :for => 'login_user_email'}
+            .controls
+              = f.email_field :email, :size => 45, :class => 'required email', :minlength => '2', :id => 'login_user_email'
+          .span3.control-group
+            = f.label :password, {:class => 'control-label', :for => 'login_user_password'}
+            .controls
+              = f.password_field :password, :size => 45, :class => 'required', :minlength => '6', :id => 'login_user_password'
+        .row.text-right
+          .span2.offset4
+            = f.submit "Log in", :class => 'btn btn-primary fright'
+  .modal-footer
+    Wakeup Makeup!

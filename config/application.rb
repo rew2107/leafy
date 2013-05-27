@@ -20,6 +20,7 @@ module Leafy
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.autoload_paths += %W(#{config.root}/lib)
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
@@ -41,6 +42,8 @@ module Leafy
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+    config.assets.initialize_on_precompile = false
+    config.assets.compile = true
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
@@ -64,5 +67,12 @@ module Leafy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.generators do |g|
+      g.orm             :active_record
+      g.template_engine :haml
+      g.test_framework  :rspec, :fixture => false
+      g.stylesheets     false
+    end
   end
 end
