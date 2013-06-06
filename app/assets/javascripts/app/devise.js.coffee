@@ -23,4 +23,6 @@ $.isolatePage('setPage', "registrations", ->
     $('#country_name').text(name)
   )
 
+  $('.world_flag').tooltip({placement: 'bottom'})
+
 )

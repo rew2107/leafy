@@ -29,7 +29,7 @@
             .span1
               = f.radio_button :country_id, country.id, :class => 'hidden country_radio', :country_name => "#{country.name}"
               = f.label "country_id_#{country.id}" do
-                %span.world_flag(class="sprite-#{country.flag}")
+                %span.world_flag{:class=>"sprite-#{country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> country.name}
         .span3
           #country_name.label.label-important= @user.country.try(:name) || 'Unknown Lands'
 
