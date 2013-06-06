@@ -18,14 +18,21 @@
   .span12.favorites
     .black_seperate
     .seperate.bottom10
-    .lead Your local favorites
+    .lead 
+      Your
+      %span.redding local
+      favorites
     #locals= render 'show_favorites', :favorites => @user.local_favorites
 
 .row.top20
   .span12.favorites
     .black_seperate
     .seperate.bottom10
-    .lead Your foreign favorites
+    .lead
+      Your
+      %span.redding foreign
+      favorites
+
     #foreigns= render 'show_favorites', :favorites => @user.foreign_favorites
 
 .row.top20
