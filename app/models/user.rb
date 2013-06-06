@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :description,
     :photo, :country_id, :favorite_products_attributes, :local_favorites_attributes, :foreign_favorites_attributes
 
-  has_many :favorite_products
-  has_many :foreign_favorites, :class_name => 'FavoriteProduct', :conditions => {:foreign => true}, :limit => 6
-  has_many :local_favorites, :class_name => 'FavoriteProduct', :conditions => {:foreign => false}, :limit => 6
+  has_many :favorite_products, :limit => FavoriteProduct::MAX_ALLOWED_PER_TYPE * 2
+  has_many :foreign_favorites, :class_name => 'FavoriteProduct', :conditions => {:foreign => true}, :limit => FavoriteProduct::MAX_ALLOWED_PER_TYPE
+  has_many :local_favorites, :class_name => 'FavoriteProduct', :conditions => {:foreign => false}, :limit => FavoriteProduct::MAX_ALLOWED_PER_TYPE
   belongs_to :country
 
   accepts_nested_attributes_for :favorite_products, :reject_if => lambda { |a| a[:title].blank? }, :allow_destroy => true
