@@ -11,6 +11,7 @@ $.isolatePage('setPage', "users", ->
   })
 
   $('.fav_tip').tooltip({placement: 'bottom'})
+  $('#my_location').tooltip({placement: 'right'})
 
   setFavClick = (favoritesId) ->
     details = '' + favoritesId + ' .fav_details'

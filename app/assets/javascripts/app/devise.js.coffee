@@ -24,5 +24,4 @@ $.isolatePage('setPage', "registrations", ->
   )
 
   $('.world_flag').tooltip({placement: 'bottom'})
-
 )

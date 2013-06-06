@@ -64,6 +64,6 @@
         = f.password_field :password_confirmation, :minlength => '6', :equalTo => "#user_password"
 
       .row
-        .span3.offset8.top30
+        .span3.offset8.top30.bottom30
           = link_to  "cancel", users_path, :class => 'btn btn-link btn-small'
-          = f.submit "Update", :class => 'btn btn-success'
+          = f.submit "Update", :class => 'btn btn-large btn-success'
