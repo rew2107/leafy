@@ -3,28 +3,41 @@
     = devise_error_messages!
     .well.fullspan
       .span10
-        .span3= image_tag current_user.photo.url(:thumb), :class => 'img-polaroid top50'
+        #photo_edit_span.span3.top30
+          = f.file_field :photo, :id => 'photo_input', :class => 'hidden'
+          .pic
+            =image_tag current_user.photo.url(:square), :class => 'img-polaroid'
+          #edit_text.hidden
+            %span.badge edit photo
+
         .span6
-          = f.label :first_name
-          =f.text_field :first_name
-          = f.label :last_name
-          =f.text_field :last_name
+          .row
+            .span3
+              = f.label :first_name
+              =f.text_field :first_name
+            .span3
+              = f.label :last_name
+              =f.text_field :last_name
           %p
             = f.label :description
             =f.text_area :description
 
 
 
-    .span10.top400
-      = f.label :email
-      = f.email_field :email
+    .row
+      .span10.skip_fullspan
+        .span3
+          = f.label :email
+          = f.email_field :email, :class => 'required email', :minlength => '2'
+        .span3
+          = f.label :password
+          = f.password_field :password, :autocomplete => "off", :minlength => '6'
 
-      = f.label :password
-      = f.password_field :password, :autocomplete => "off"
+        .span3
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, :minlength => '6', :equalTo => "#user_password"
 
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation
-
-      = f.submit "Update", :class => 'btn btn-success'
+      .row
+        .top20.span3.offset8= f.submit "Update", :class => 'btn btn-success'
 
 

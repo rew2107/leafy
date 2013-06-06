@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :description
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :description, :photo
   # attr_accessible :title, :body
   #
   validates_attachment :photo,
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     :size => { :in => 0..4.megabytes }
 
   has_attached_file :photo, :default_url => '/assets/missing_person.png', :styles => {
-    thumb: '100x100>',
+    thumb: '64x64>',
     square: '140x140#'
   }
 

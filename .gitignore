@@ -12,4 +12,23 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/chromedriver.log
 /tmp
+
+#Ignore vim byproducts
+*.swp
+
+#Ignore rbenv placeholder
+.rbenv-version
+
+#DS_Store is the devil
+.DS_Store
+.tddium*
+.rvmrc
+.zeus.sock
+.rspec
+
+#ctags
+tags
+
+/app/assets/paperclip

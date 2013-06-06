@@ -1,4 +1,18 @@
-$.isolatePage('setPage', "devise_registrations", ->
+$.isolatePage('setPage', "registrations", ->
 
-  $(form).validate_bootstrap({}) for form in $("form")
+  elem = $('#edit_user')
+  photoInput = elem.find('#photo_input')
+
+
+  photoInput.change( (input) ->
+    reader = new FileReader()
+    reader.onload = (e) ->
+      elem.find('img').attr('src', e.target.result)
+
+    reader.readAsDataURL(input.target.files[0])
+  )
+
+  elem.find('.pic').click( (e) ->
+    photoInput.click()
+  )
 )
