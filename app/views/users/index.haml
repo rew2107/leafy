@@ -5,7 +5,9 @@
         = image_tag @user.photo.url(:square), :class => 'img-polaroid'
         #self_star
       .span8
-        %h2= @user.fullname || '?????'
+        %h2
+          = @user.fullname || '?????'
+          %span.world_flag(class="sprite-#{@user.country.try(:flag)}")
         %p= @user.description
         %p
           =link_to 'Edit your profile', edit_user_registration_path, :class => 'btn btn-success'

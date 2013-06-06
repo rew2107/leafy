@@ -19,21 +19,34 @@
               = f.label :last_name
               =f.text_field :last_name
           %p
-            = f.label :description
+            = f.label :description, 'Tell us about yourself!'
             =f.text_area :description
     .row
       .span10.skip_fullspan
+        %h3.lead Where are you from?
+        .span6
+          - Country.all.each do |country|
+            .span1
+              = f.radio_button :country_id, country.id, :class => 'hidden country_radio', :country_name => "#{country.name}"
+              = f.label "country_id_#{country.id}" do
+                %span.world_flag(class="sprite-#{country.flag}")
         .span3
-          = f.label :email
-          = f.email_field :email, :class => 'required email', :minlength => '2'
-        .span3
-          = f.label :password
-          = f.password_field :password, :autocomplete => "off", :minlength => '6'
+          #country_name.label.label-important= @user.country.try(:name) || 'Unknown Lands'
 
-        .span3
-          = f.label :password_confirmation
-          = f.password_field :password_confirmation, :minlength => '6', :equalTo => "#user_password"
+    .row.top20
+      .seperate.bottom30
+      .span3
+        = f.label :email
+        = f.email_field :email, :class => 'required email', :minlength => '2'
+      .span3
+        = f.label :password
+        = f.password_field :password, :autocomplete => "off", :minlength => '6'
+
+      .span3
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, :minlength => '6', :equalTo => "#user_password"
 
       .row
-        .span3.offset8= f.submit "Update", :class => 'btn btn-success'
-
+        .span3.offset8.top30
+          = link_to  "cancel", users_path, :class => 'btn btn-link btn-small'
+          = f.submit "Update", :class => 'btn btn-success'

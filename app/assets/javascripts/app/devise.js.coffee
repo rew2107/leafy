@@ -15,4 +15,10 @@ $.isolatePage('setPage', "registrations", ->
   elem.find('.pic').click( (e) ->
     photoInput.click()
   )
+
+  $('.country_radio').change( (event) ->
+    name = $(event.target).attr('country_name')
+    $('#country_name').text(name)
+  )
+
 )
