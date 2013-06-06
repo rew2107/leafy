@@ -1,7 +1,7 @@
 #registrations{
   @include user_page;
   textarea{height: 100px; width: 500px;}
-  .skip_fullspan{ margin-top: 280px; }
+  .skip_fullspan{ margin-top: 280px; height: 110px;}
   #edit_text{
     width: 145px;
     text-align: center;

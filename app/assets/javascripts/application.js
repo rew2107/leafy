@@ -14,7 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.isolatepage.min
-//= require jquery.validate.js
+//= require jquery.validate
 //= require jquery-fileupload/basic
+//= require jquery.raty.min
 //= require_tree ./global
 //= require_tree ./app

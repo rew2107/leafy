@@ -21,9 +21,6 @@
           %p
             = f.label :description
             =f.text_area :description
-
-
-
     .row
       .span10.skip_fullspan
         .span3
@@ -38,6 +35,5 @@
           = f.password_field :password_confirmation, :minlength => '6', :equalTo => "#user_password"
 
       .row
-        .top20.span3.offset8= f.submit "Update", :class => 'btn btn-success'
-
+        .span3.offset8= f.submit "Update", :class => 'btn btn-success'
 
