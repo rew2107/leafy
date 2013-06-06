@@ -82,6 +82,9 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -209,6 +212,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.2)
   devise (~> 2.2.3)
   factory_girl_rails (~> 4.2.1)
+  gon (~> 4.1.1)
   haml-rails (~> 0.4)
   hashie (~> 2.0.2)
   jquery-fileupload-rails

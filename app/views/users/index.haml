@@ -1,10 +1,12 @@
 .row.center
   .well.fullspan
     .span12
-      .span3= image_tag current_user.photo.url(:square), :class => 'img-polaroid'
+      .span3
+        = image_tag @user.photo.url(:square), :class => 'img-polaroid'
+        #self_star
       .span8
-        %h2= current_user.fullname || '?????'
-        %p= current_user.description
+        %h2= @user.fullname || '?????'
+        %p= @user.description
         %p
           =link_to 'Edit your profile', edit_user_registration_path, :class => 'btn btn-success'
 

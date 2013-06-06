@@ -33,4 +33,4 @@ gem "jquery-fileupload-rails"
 gem "aws-ses", "~> 0.4.4"
 gem "devise", "~> 2.2.3"
 gem "jquery-fileupload-rails"
-
+gem "gon", "~> 4.1.1"

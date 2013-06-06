@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
+    gon.user_rating = @user.rating || 0
   end
 
   def show

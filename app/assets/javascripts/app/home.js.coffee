@@ -1,2 +1,0 @@
-$.isolatePage('setPage', "home", ->
-)
