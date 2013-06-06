@@ -12,3 +12,28 @@
         %p
           =link_to 'Edit your profile', edit_user_registration_path, :class => 'btn btn-success'
 
+.row
+  .span12.skip_fullspan
+.row
+  .span12.favorites
+    .black_seperate
+    .seperate.bottom10
+    .lead Your local favorites
+    #locals= render 'show_favorites', :favorites => @user.local_favorites
+
+.row.top20
+  .span12.favorites
+    .black_seperate
+    .seperate.bottom10
+    .lead Your foreign favorites
+    #foreigns= render 'show_favorites', :favorites => @user.foreign_favorites
+
+.row.top20
+  .span12
+    .black_seperate
+    .seperate.bottom10
+    .lead Reviews
+
+
+
+

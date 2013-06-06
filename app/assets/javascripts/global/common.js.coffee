@@ -1,4 +1,3 @@
-$("[rel=tooltip]").tooltip()
 
 jQuery.fn.resetForm = ->
   $(this).each ( ->

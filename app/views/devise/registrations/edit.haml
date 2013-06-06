@@ -3,11 +3,11 @@
     = devise_error_messages!
     .well.fullspan
       .span10
-        #photo_edit_span.span3.top30
-          = f.file_field :photo, :id => 'photo_input', :class => 'hidden'
-          .pic
+        .photo_edit_span.span3.top30
+          = f.file_field :photo, :class => 'hidden photo_input'
+          .pic.favorite_pic
             =image_tag current_user.photo.url(:square), :class => 'img-polaroid'
-          #edit_text.hidden
+          .edit_text.hidden
             %span.badge edit photo
 
         .span6
@@ -23,7 +23,7 @@
             =f.text_area :description
     .row
       .span10.skip_fullspan
-        %h3.lead Where are you from?
+        .lead Where are you from?
         .span6
           - Country.all.each do |country|
             .span1
@@ -34,6 +34,21 @@
           #country_name.label.label-important= @user.country.try(:name) || 'Unknown Lands'
 
     .row.top20
+      .black_seperate
+      .seperate.bottom20
+      .span10
+        .lead What are your favorite things from your home country?
+        = render 'edit_favorites', :products => :local_favorites, :f => f
+
+    .row.top20
+      .black_seperate
+      .seperate.bottom20
+      .span10
+        .lead How about some favorite things from foreign countries?
+        = render 'edit_favorites', :products => :foreign_favorites, :f => f
+
+    .row.top20
+      .black_seperate
       .seperate.bottom30
       .span3
         = f.label :email

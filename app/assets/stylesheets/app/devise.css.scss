@@ -1,8 +1,7 @@
 #registrations{
   @include user_page;
-  textarea{height: 100px; width: 500px;}
-  .skip_fullspan{ margin-top: 280px; height: 110px;}
-  #edit_text{
+  textarea{height: 100px; width: 600px;}
+  .edit_text{
     width: 145px;
     text-align: center;
     padding: 5px;
@@ -11,9 +10,13 @@
     position: relative;
     top: -40px;
   }
-  #photo_edit_span:hover{ cursor: pointer; #edit_text{ display: inline-block; }}
+  .photo_edit_span:hover{ cursor: pointer; .edit_text{ display: inline-block; }}
   .pic{ height: 140px; width: 140px;}
   .fullspan{ height: 210px;}
   #country_name{ line-height: normal; font-size: 25px; padding: 5px 50px; }
-  .seperate{ border-top: 1px dashed $light-green; }
+  .favorite_pic{ margin-top: -15px; height: 150px; }
+  .media{ padding-top: 20px; width: 850px;}
+  .media{ textarea{ height: 65px; }}
+  .media{ .edit_text{ width: 140px; top: -95px; padding: 0; }}
+  .skip_fullspan{ margin-top: 280px; height: 110px;}
 }

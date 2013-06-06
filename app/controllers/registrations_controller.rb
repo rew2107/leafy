@@ -16,4 +16,13 @@ class RegistrationsController < Devise::RegistrationsController
       render "edit"
     end
   end
+
+  def edit
+    number_of_new_foreign_products = FavoriteProduct::MAX_ALLOWED_PER_TYPE - resource.foreign_favorites.count
+    number_of_new_local_products = FavoriteProduct::MAX_ALLOWED_PER_TYPE - resource.local_favorites.count
+
+    number_of_new_local_products.times { resource.local_favorites.build }
+    number_of_new_foreign_products.times { resource.foreign_favorites.build }
+    render :edit
+  end
 end

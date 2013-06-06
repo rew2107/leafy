@@ -1,20 +1,22 @@
 $.isolatePage('setPage', "registrations", ->
 
-  elem = $('#edit_user')
-  photoInput = elem.find('#photo_input')
+  picClicked = {}
 
+  for elem in $('.photo_edit_span')
+    elem = $(elem)
+    photoInput = elem.find('.photo_input')
+    photoInput.change( (input) ->
+      reader = new FileReader()
+      reader.onload = (e) ->
+        picClicked.find('img').attr('src', e.target.result)
 
-  photoInput.change( (input) ->
-    reader = new FileReader()
-    reader.onload = (e) ->
-      elem.find('img').attr('src', e.target.result)
+      reader.readAsDataURL(input.target.files[0])
+    )
 
-    reader.readAsDataURL(input.target.files[0])
-  )
-
-  elem.find('.pic').click( (e) ->
-    photoInput.click()
-  )
+    elem.find('.pic').click( (e) ->
+      picClicked = $(e.target)
+      photoInput.click()
+    )
 
   $('.country_radio').change( (event) ->
     name = $(event.target).attr('country_name')

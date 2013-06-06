@@ -1,0 +1,14 @@
+= f.fields_for products do |builder|
+  = builder.hidden_field :foreign
+  .media
+    .photo_edit_span
+      = f.file_field :photo, :class => 'hidden photo_input'
+      .pic.right20.favorite_pic
+        =image_tag builder.object.photo.url(:square), :class => 'img-circle inline'
+      .edit_text.hidden
+        %span.badge edit photo
+    .media-body.inline
+      %h4.media-heading= builder.text_field :title, :placeholder => 'Item Name'
+      = builder.text_area :description, :placeholder => 'Why do you like it?'
+
+

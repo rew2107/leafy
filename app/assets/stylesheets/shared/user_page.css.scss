@@ -7,4 +7,8 @@
     margin-right: 0px;
     border-radius: 0;
   }
+  .seperate{ border-top: 1px solid $light-green; }
+  .black_seperate{ border-top: 1px solid black; }
+  .skip_fullspan{ margin-top: 280px; height: 110px;}
+  .img-circle{ border: 1px solid $dark-grey;}
 }

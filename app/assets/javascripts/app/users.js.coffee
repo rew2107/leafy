@@ -9,4 +9,21 @@ $.isolatePage('setPage', "users", ->
     width       : 145,
     score       : gon.user_rating
   })
+
+  $('.fav_tip').tooltip({placement: 'bottom'})
+
+  setFavClick = (favoritesId) ->
+    details = '' + favoritesId + ' .fav_details'
+    tips = '' + favoritesId + ' .fav_tip'
+
+    $(details).first().show()
+
+    $(tips).click( (event) ->
+      id = $(event.target).closest('.fav_tip').attr('fav_id')
+      $(details).hide()
+      $('#fav_details_' + id).fadeIn()
+    )
+
+  setFavClick('#locals')
+  setFavClick('#foreigns')
 )

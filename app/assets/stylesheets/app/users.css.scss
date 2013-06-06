@@ -2,4 +2,11 @@
   @include user_page;
 
   #self_star{ display: inline-block; width: 145px; text-align: center;}
+  .fav_tip:hover{ cursor: pointer; }
+  .fav_details{ margin-top: -40px; }
+  .media-body{ width: 360px; }
+  .fav_photo{ vertical-align: top; }
+  .media-heading{ color: $red; }
+  .favorites{ min-height: 165px; }
+  .skip_fullspan{ margin-top: 150px; height: 110px;}
 }
