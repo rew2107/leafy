@@ -2,7 +2,7 @@
   = builder.hidden_field :foreign
   .media
     .photo_edit_span
-      = f.file_field :photo, :class => 'hidden photo_input'
+      = builder.file_field :photo, :class => 'hidden photo_input'
       .pic.right20.favorite_pic
         =image_tag builder.object.photo.url(:square), :class => 'img-circle inline'
       .edit_text.hidden

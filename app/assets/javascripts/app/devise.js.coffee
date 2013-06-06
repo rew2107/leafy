@@ -14,7 +14,7 @@ $.isolatePage('setPage', "registrations", ->
     )
 
     elem.find('.pic').click( (e) ->
-      picClicked = $(e.target)
+      picClicked = $(e.target).closest('.pic')
       photoInput.click()
     )
 

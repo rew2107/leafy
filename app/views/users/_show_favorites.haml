@@ -2,7 +2,7 @@
   .row
     - favorites.each do |fav|
       .span1.fav_tip{:'data-toggle'=>"tooltip", :rel=> 'tooltip', :fav_id => fav.id, :title=> fav.title}
-        = image_tag fav.photo.url(:thumb), :class => 'img-circle inline fav_image'
+        = image_tag fav.photo.url(:thumb), :class => 'img-circle inline small_fav_photo'
 - favorites.each do |fav|
   .span7.hidden.fav_details{:id=>"fav_details_#{fav.id}"}
     .media

@@ -5,7 +5,7 @@
       .span10
         .photo_edit_span.span3.top30
           = f.file_field :photo, :class => 'hidden photo_input'
-          .pic.favorite_pic
+          .pic
             =image_tag current_user.photo.url(:square), :class => 'img-polaroid'
           .edit_text.hidden
             %span.badge edit photo
@@ -23,6 +23,8 @@
             =f.text_area :description
     .row
       .span10.skip_fullspan
+    .row
+      .span10
         .lead Where are you from?
         .span6
           - Country.all.each do |country|

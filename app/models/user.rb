@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     :size => { :in => 0..4.megabytes }
 
   has_attached_file :photo, :default_url => '/assets/missing_person.png', :styles => {
-    thumb: '64x64>',
+    thumb: '64x64#',
     square: '140x140#'
   }
 
