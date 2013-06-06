@@ -1,9 +1,12 @@
 //GLOBAL
 @import "bootstrap";
+@import 'jquery.fileupload-ui';
+@import "global/common";
 @import 'global/colors';
 @import "global/topnav";
 
 //SHARED
+@import "shared/user_page";
 
 //APP
 @import 'app/devise';

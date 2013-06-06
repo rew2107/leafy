@@ -1,0 +1,10 @@
+@mixin user_page {
+  .fullspan{
+    position:absolute;
+    left:0;
+    right:0;
+    margin-left: 0px;
+    margin-right: 0px;
+    border-radius: 0;
+  }
+}
