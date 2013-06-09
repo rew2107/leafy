@@ -1,0 +1,59 @@
+.row.center
+  .well.fullspan
+    .span12
+      .span2half
+        #request_icon.img-polaroid
+      .span9
+        %h2 Requests
+        %p Post a request for others to take up. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        %p= link_to 'Create new request!', edit_user_registration_path, :class => 'btn btn-success'
+
+.row
+  .span12.skip_fullspan
+
+.row
+  .span12
+    .black_seperate
+    .seperate.bottom10
+    .lead 
+      Create a
+      %span.redding new
+      request
+
+    =form_for @new_request do |f|
+      .span12
+        .span5= f.text_field :title, :placeholder => 'What is the item?'
+        .span3
+          #country_name.label.label-important= @user.country.try(:name) || 'Unknown Lands'
+        .span11= f.text_area :description, :class => 'area', :placeholder => 'Describe any extra information'
+        .row.bottom30
+          .span6.small.bottom10 Where are you looking for this item?
+          .row
+            .span6
+              - Country.all.each do |country|
+                .span1
+                  = f.radio_button :country_id, country.id, :class => 'hidden country_radio', :country_name => "#{country.name}"
+                  = f.label "country_id_#{country.id}" do
+                    %span.world_flag{:class=>"sprite-#{country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> country.name}
+            .span3
+              = f.submit "Create new request!", :class => 'btn btn-success'
+
+
+.row
+  .span12
+    .black_seperate
+    .seperate.bottom10
+    .lead 
+      Your
+      %span.redding active
+      requests
+
+.row.top20
+  .span12
+    .black_seperate
+    .seperate.bottom10
+    .lead
+      Your
+      %span.redding completed
+      requests
+

@@ -1,0 +1,35 @@
+.row.center
+  .well.fullspan
+    =form_for @request do |f|
+      .photo_edit_span.span3.top30
+        = f.file_field :photo, :class => 'hidden photo_input'
+        .pic
+          =image_tag @request.photo.url(:square), :class => 'img-polaroid'
+        .edit_text.hidden
+          %span.badge edit photo
+        .row
+          .span3.top30
+            #country_name.label.label-important= @request.country.try(:name) || 'Unknown Lands'
+
+      .span9
+        %h2
+          Create a
+          %span.redding new
+          request
+      .span9
+        .row
+          .span5= f.text_field :title, :placeholder => 'What is the item?'
+        .row
+          .span9= f.text_area :description, :class => 'area', :placeholder => 'Describe any extra information'
+        .row.bottom30
+          .span6.lead.bottom10 Where are you looking for this item?
+          .row
+            .span6
+              - Country.all.each do |country|
+                .span1
+                  = f.radio_button :country_id, country.id, :class => 'hidden country_radio', :country_name => "#{country.name}"
+                  = f.label "country_id_#{country.id}" do
+                    %span.world_flag{:class=>"sprite-#{country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> country.name}
+            .span3
+              = f.submit "Create new request!", :class => 'btn btn-large btn-success'
+

@@ -3,7 +3,7 @@
   - if user_signed_in?
     %li= link_to 'You', users_path
     %li= link_to 'Inbox', '#inbox'
-    %li= link_to 'Request' , '#leagues_path'
+    %li= link_to 'Request' , requests_path
     %li= link_to 'Shop' , '#challengers_path'
     %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
   - else
