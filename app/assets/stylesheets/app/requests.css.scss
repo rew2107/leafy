@@ -13,7 +13,7 @@
     top: -40px;
   }
   .pic{ img{ width: 140px; height: 140px;}}
-  .photo_edit_span:hover{ cursor: pointer; .edit_text{ display: block; }}
+  .pic:hover{ cursor: pointer; .edit_text{ display: block; }}
   .pic{ height: 140px; width: 140px;}
 
   .request_link{ padding: 10px; border-radius: 4px; a{ color: black; }}

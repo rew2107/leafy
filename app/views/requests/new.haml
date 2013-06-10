@@ -5,8 +5,8 @@
         = f.file_field :photo, :class => 'hidden', :id => 'photo_input'
         .pic
           =image_tag @request.photo.url(:square), :class => 'img-polaroid'
-        .edit_text.hidden
-          %span.badge edit photo
+          .edit_text.hidden
+            %span.badge edit photo
         .row
           .span3.top50
             #country_name.label.label-important= @request.country.try(:name) || 'Unknown Lands'
