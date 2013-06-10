@@ -6,7 +6,7 @@ Leafy::Application.routes.draw do
   root :to => "home#index"
 
   resources :users, :only => [:index, :show]
-  resources :requests, :only => [:index, :show, :edit, :new]
+  resources :requests
 
   devise_for :users, :controllers => {:registrations => "registrations"}, :path => "userinfo"
 end

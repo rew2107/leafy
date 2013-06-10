@@ -4,4 +4,20 @@
   #request_icon{background: image-url("request_icon.png") no-repeat white; display: inline-block; width: 140px; height: 140px; text-align: center; }
   .area{ width: 90%; height: 100px;}
   #country_name{ line-height: normal; padding: 5px 0 5px 0; width: 150px; text-align: center;}
+  .edit_text{
+    width: 145px;
+    text-align: center;
+    opacity: 0.8;
+    cursor: pointer;
+    position: relative;
+    top: -40px;
+  }
+  .pic{ img{ width: 140px; height: 140px;}}
+  .photo_edit_span:hover{ cursor: pointer; .edit_text{ display: block; }}
+  .pic{ height: 140px; width: 140px;}
+
+  .request_link{ padding: 10px; border-radius: 4px; a{ color: black; }}
+  .request_link:hover{ background-color: $light-green; .redding{color: $green;}}
+
+
 }

@@ -3,7 +3,6 @@ class RequestsController < ApplicationController
   def index
     @user = current_user
     @requests = @user.requests.limit(6)
-    @new_request = @user.requests.build
   end
 
   def edit
@@ -20,6 +19,16 @@ class RequestsController < ApplicationController
       render 'owned_show'
     else
       render 'other_show'
+    end
+  end
+
+  def create
+    @request = current_user.requests.build(params[:request])
+    if @request.save
+      flash.now[:notice] = 'Your request has been posted!'
+      render 'index'
+    else
+      render 'new'
     end
   end
 

@@ -1,5 +1,5 @@
 class Request < ActiveRecord::Base
-  attr_accessible :title, :country_id, :description
+  attr_accessible :title, :country_id, :description, :photo
 
   belongs_to :country
   belongs_to :requester, :class_name => 'User'

@@ -1,3 +1,3 @@
 class Country < ActiveRecord::Base
-  attr_accessible :name, :flag
+  attr_accessible :name, :flag, :id
 end
