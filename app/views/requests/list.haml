@@ -1,10 +1,14 @@
 .row.center
   .well.fullspan
     .span12
-      .span2half
-        #request_icon.img-polaroid
-      .span9
-        %h2= "Requests #{@title}"
+      .row
+        .span2half
+          #request_icon.img-polaroid
+        .span9
+          %h2= "Requests #{@title}"
+          %span.active_red
+            = paginate @requests
+
 
 .row
   .span12.skip_fullspan
@@ -26,5 +30,6 @@
                 %span= truncate(req.description, :length => 250, :separator => ' ')
 
 .row
-  = paginate @requests
+  .span5.fright.active_red
+    = paginate @requests
 
