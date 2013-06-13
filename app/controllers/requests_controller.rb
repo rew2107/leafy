@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
 
   def index
     @user = current_user
-    @requests = @user.requests.limit(6)
+    @requests = @user.requests.limit(6).order('created_at DESC')
   end
 
   def edit
@@ -25,8 +25,8 @@ class RequestsController < ApplicationController
   def create
     @request = current_user.requests.build(params[:request])
     if @request.save
-      flash.now[:notice] = 'Your request has been posted!'
-      render 'index'
+      flash[:notice] = 'Your request has been posted!'
+      redirect_to :action => :index
     else
       render 'new'
     end
