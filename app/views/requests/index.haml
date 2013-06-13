@@ -31,3 +31,12 @@
                 .muted.inline= req.created_at.strftime('%b %-d %Y -')
                 %span= truncate(req.description, :length => 70, :separator => ' ')
 
+      .row
+        .span2.fright.active_red
+          - if title == 'active'
+            =link_to 'see more...', active_requests_path
+          - elsif title == 'in progress'
+            =link_to 'see more...', in_progress_requests_path
+          - elsif title == 'completed'
+            =link_to 'see more...', completed_requests_path
+

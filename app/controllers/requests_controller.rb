@@ -25,15 +25,21 @@ class RequestsController < ApplicationController
   end
 
   def active
-    @user.active_requests.order('created_at DESC').page params[:page]
+    @title = 'Active'
+    @requests = current_user.active_requests.order('created_at DESC').page params[:page]
+    render 'list'
   end
 
   def completed
-    @user.completed_requests.order('created_at DESC').page params[:page]
+    @title = 'Completed'
+    @requests = current_user.completed_requests.order('created_at DESC').page params[:page]
+    render 'list'
   end
 
   def in_progress
-    @user.in_progress_requests.order('created_at DESC').page params[:page]
+    @title = 'In Progress'
+    @requests = current_user.in_progress_requests.order('created_at DESC').page params[:page]
+    render 'list'
   end
 
   def create

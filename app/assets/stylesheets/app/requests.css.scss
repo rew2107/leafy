@@ -19,5 +19,5 @@
   .request_link{ padding: 10px; border-radius: 4px; .media-body{ color: black; }}
   .request_link:hover{ .redding{ text-decoration:underline; } .img-polaroid{ border-color: $red;}}
 
-
+ .active_red{ a{ color: $red; }}
 }
