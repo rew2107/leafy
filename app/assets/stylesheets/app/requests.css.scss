@@ -16,8 +16,8 @@
   .pic:hover{ cursor: pointer; .edit_text{ display: block; }}
   .pic{ height: 140px; width: 140px;}
 
-  .request_link{ padding: 10px; border-radius: 4px; a{ color: black; }}
-  .request_link:hover{ background-color: $light-green; .redding{color: $green;}}
+  .request_link{ padding: 10px; border-radius: 4px; .media-body{ color: black; }}
+  .request_link:hover{ .redding{ text-decoration:underline; } .img-polaroid{ border-color: $red;}}
 
 
 }

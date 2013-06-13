@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
 
   def index
     @user = current_user
-    @requests = @user.requests.limit(6).order('created_at DESC')
+    @requests = @user.requests.limit(4).order('created_at DESC')
   end
 
   def edit
