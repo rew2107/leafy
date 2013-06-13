@@ -1,4 +1,8 @@
 class Request < ActiveRecord::Base
+  ACTIVE = 'active'
+  IN_PROGRESS = 'progress'
+  COMPLETED = 'complete'
+
   attr_accessible :title, :country_id, :description, :photo
 
   belongs_to :country

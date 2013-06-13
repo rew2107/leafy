@@ -25,6 +25,18 @@ class User < ActiveRecord::Base
     square: '140x140#'
   }
 
+  def active_requests
+    requests.where('status = ?', Request::ACTIVE)
+  end
+
+  def in_progress_requests
+    requests.where('status = ?', Request::IN_PROGRESS)
+  end
+
+  def completed_requests
+    requests.where('status = ?', Request::COMPLETED)
+  end
+
   def fullname
     "#{first_name} #{last_name}" if first_name.present? || last_name.present?
   end

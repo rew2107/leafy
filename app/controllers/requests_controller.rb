@@ -2,7 +2,9 @@ class RequestsController < ApplicationController
 
   def index
     @user = current_user
-    @requests = @user.requests.limit(4).order('created_at DESC')
+    @in_progress_requests = @user.in_progress_requests.limit(4).order('created_at DESC')
+    @active_requests = @user.active_requests.limit(4).order('created_at DESC')
+    @completed_requests = @user.completed_requests.limit(4).order('created_at DESC')
   end
 
   def edit
@@ -20,6 +22,18 @@ class RequestsController < ApplicationController
     else
       render 'other_show'
     end
+  end
+
+  def active
+    @user.active_requests.order('created_at DESC').page params[:page]
+  end
+
+  def completed
+    @user.completed_requests.order('created_at DESC').page params[:page]
+  end
+
+  def in_progress
+    @user.in_progress_requests.order('created_at DESC').page params[:page]
   end
 
   def create
