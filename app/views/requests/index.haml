@@ -20,7 +20,7 @@
       %span.redding active
       requests
     - @requests.each do |req|
-      =link_to edit_request_path(req) do
+      =link_to request_path(req) do
         .span9.bottom20.request_link
           .media
             = image_tag req.photo.url(:thumb), :class => 'img-polaroid fav_photo inline right30'

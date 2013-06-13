@@ -5,7 +5,8 @@ $.isolatePage('setPage', "requests", ->
     $('#country_name').text(name)
   )
 
-  $('.world_flag').tooltip({placement: 'bottom'})
+  $('.bottom_flag').tooltip({placement: 'bottom'})
+  $('#request_location').tooltip({placement: 'right'})
 
   elem = $('#new_request')
   photoInput = elem.find('#photo_input')
