@@ -23,7 +23,7 @@ class Request < ActiveRecord::Base
   }
 
   mapping do
-    indexes :country_id
+    indexes :country_id, :include_in_all => false
     indexes :title, :analyzer => 'snowball', :boost => 10
     indexes :description, :analyzer => 'snowball'
   end
