@@ -1,4 +1,7 @@
 class Request < ActiveRecord::Base
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   ACTIVE = 'active'
   IN_PROGRESS = 'progress'
   COMPLETED = 'complete'
@@ -18,6 +21,12 @@ class Request < ActiveRecord::Base
     square: '140x140#',
     big: '290x290#'
   }
+
+  mapping do
+    indexes :country_id
+    indexes :title, :analyzer => 'snowball', :boost => 10
+    indexes :description, :analyzer => 'snowball'
+  end
 
 end
 
