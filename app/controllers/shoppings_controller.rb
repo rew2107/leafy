@@ -18,6 +18,7 @@ class ShoppingsController < ApplicationController
 
   def search
     search_requests
+    @shoppings = @search.results
   end
 
   def completed

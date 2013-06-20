@@ -23,7 +23,10 @@ class Request < ActiveRecord::Base
   }
 
   mapping do
-    indexes :country_id, :include_in_all => false
+    indexes :id, :include_in_all => false, :index => :no
+    indexes :photo, :as => 'photo.url(:thumb)', :include_in_all => false, :index => :no
+    indexes :created_at, :type => :date, :include_in_all => false, :index => :not_analyzed
+    indexes :country_id, :include_in_all => false, :index => :not_analyzed
     indexes :title, :analyzer => 'snowball', :boost => 10
     indexes :description, :analyzer => 'snowball'
   end
