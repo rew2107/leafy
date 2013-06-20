@@ -39,14 +39,10 @@ class ShoppingsController < ApplicationController
   def search_requests
     country_id = params[:country_id]
     q = params[:q].strip if params[:q]
-    per_page = (params[:per_page] || 10).to_i
-    page = (params[:page] || 1).to_i
 
-    @search = Request.search do
+    @search = Request.search :page => (params[:page] || 1) do
       query { string q } if q.present?
-      from (page - 1) * per_page
-      size per_page
-      filter(:terms, :country_id => country_id.to_i) if country_id.present?
+      filter(:terms, :country_id => [country_id]) if country_id.present?
     end
   end
 end

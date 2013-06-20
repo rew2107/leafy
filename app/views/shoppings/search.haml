@@ -7,8 +7,8 @@
 
         .span9
           %h2 
-            Browse Requests
-            %span.muted.small= "#{pluralize @search.total, "request"} found"
+            Shop Requests
+            %span.muted.small= "#{@search.total > 0 ? @search.offset + 1 : 0} - #{@search.offset + @search.size} of #{pluralize @search.total, "request"} found"
           =form_tag search_shoppings_path, :method => 'get' do
             .row
               .span4
@@ -21,7 +21,7 @@
                 .row
                   - Country.all.each do |country|
                     .spanhalf
-                      = radio_button_tag :country_id, country.id, params[:country_id] == country.id, {:class => 'hidden country_radio', :country_name => "#{country.name}"}
+                      = radio_button_tag :country_id, country.id, params[:country_id].to_i == country.id, {:class => 'hidden country_radio', :country_name => "#{country.name}"}
                       = label_tag "country_id_#{country.id}" do
                         %span.world_flag.bottom_flag{:class=>"sprite-#{country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> country.name}
               .span3.top40= submit_tag :Search, :class => 'btn btn-danger', :id => 'search_button'
