@@ -1,0 +1,19 @@
+.row.center
+  .well.fullspan
+    .span3
+      .pic
+        =image_tag @shopping.photo.url(:square), :class => 'img-polaroid'
+
+    .span9
+      %h2
+        = @shopping.title
+        -if @shopping.country.present?
+          %span#shopping_location.world_flag{:class=>"sprite-#{@shopping.country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> @shopping.country.name}
+
+    .span9
+      .row
+        .span5= @shopping.title
+      .row
+        .span9= @shopping.description
+      .row.bottom30
+

@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     @user = current_user
@@ -16,12 +17,7 @@ class RequestsController < ApplicationController
   end
 
   def show
-    @request = Request.find(params[:id])
-    if @request.requester_id == current_user.id
-      render 'owned_show'
-    else
-      render 'other_show'
-    end
+    @request = current_user.requests.find(params[:id])
   end
 
   def active

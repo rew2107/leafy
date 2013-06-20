@@ -1,0 +1,25 @@
+#shoppings{
+  @include user_page;
+  .redding{ color: $red; }
+  #shopping_icon{background: image-url("shopping_icon.png") no-repeat white; display: inline-block; width: 140px; height: 140px; text-align: center; }
+  #icon_container{ width: 140px; height: 140px; text-align: center; }
+  .area{ width: 90%; height: 100px;}
+  #country_name{ line-height: normal; padding: 5px 0 5px 0; width: 150px; text-align: center;}
+  .edit_text{
+    width: 145px;
+    text-align: center;
+    opacity: 0.8;
+    cursor: pointer;
+    position: relative;
+    top: -40px;
+  }
+  .pic{ img{ width: 140px; height: 140px;}}
+  .pic:hover{ cursor: pointer; .edit_text{ display: block; }}
+  .pic{ height: 140px; width: 140px;}
+
+  .shopping_link{ padding: 10px; border-radius: 4px; .media-body{ color: black; }}
+  .shopping_link:hover{ .redding{ text-decoration:underline; } .img-polaroid{ border-color: $red;}}
+
+ .active_red{ a{ color: $red; }}
+ .pagination{ font-size: 16px; }
+}

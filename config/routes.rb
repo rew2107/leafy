@@ -6,6 +6,13 @@ Leafy::Application.routes.draw do
   root :to => "home#index"
 
   resources :users, :only => [:index, :show]
+  resources :shoppings, :only => [:index, :show] do
+    collection do
+      get :search
+      get :completed
+      get :in_progress
+    end
+  end
   resources :requests do
     collection do 
       get :active
