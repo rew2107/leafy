@@ -17,5 +17,6 @@
 //= require jquery.validate
 //= require jquery-fileupload/basic
 //= require jquery.raty.min
+//= require jquery_nested_form
 //= require_tree ./global
 //= require_tree ./app

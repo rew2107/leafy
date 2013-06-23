@@ -1,16 +1,12 @@
 class Request < ActiveRecord::Base
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
 
-  ACTIVE = 'active'
-  IN_PROGRESS = 'progress'
-  COMPLETED = 'complete'
+  attr_accessible :title, :description, :photo
 
-  attr_accessible :title, :country_id, :description, :photo
+  belongs_to :request_basket
 
-  belongs_to :country
-  belongs_to :requester, :class_name => 'User'
-  belongs_to :shopper, :class_name => 'User'
+  validates_presence_of :title, :description
+  validates :request_basket, :associated => true
+
 
   validates_attachment :photo,
     :content_type => { :content_type => ["image/jpg", "image/png", "image/jpeg", "image/gif"] },
@@ -21,15 +17,5 @@ class Request < ActiveRecord::Base
     square: '140x140#',
     big: '290x290#'
   }
-
-  mapping do
-    indexes :id, :include_in_all => false, :index => :no
-    indexes :photo, :as => 'photo.url(:thumb)', :include_in_all => false, :index => :no
-    indexes :created_at, :type => :date, :include_in_all => false, :index => :not_analyzed
-    indexes :country_id, :include_in_all => false, :index => :not_analyzed,  :analyzer => 'keyword'
-    indexes :title, :analyzer => 'snowball', :boost => 10
-    indexes :description, :analyzer => 'snowball'
-  end
-
 end
 
