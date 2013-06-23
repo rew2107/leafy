@@ -25,24 +25,24 @@ class User < ActiveRecord::Base
     square: '140x140#'
   }
 
-  def active_requests
-    requests.where('status = ?', Request::ACTIVE)
+  def active_request_baskets
+    request_baskets.where('status = ?', RequestBasket::ACTIVE)
   end
 
-  def in_progress_requests
-    requests.where('status = ?', Request::IN_PROGRESS)
+  def in_progress_request_baskets
+    request_baskets.where('status = ?', RequestBasket::IN_PROGRESS)
   end
 
-  def completed_requests
-    requests.where('status = ?', Request::COMPLETED)
+  def completed_request_baskets
+    request_baskets.where('status = ?', RequestBasket::COMPLETED)
   end
 
-  def completed_shopping
-    shoppings.where('status = ?', Request::COMPLETED)
+  def completed_shopping_baskets
+    shopping_baskets.where('status = ?', RequestBasket::COMPLETED)
   end
 
-  def in_progress_shopping
-    shoppings.where('status = ?', Request::IN_PROGRESS)
+  def in_progress_shopping_baskets
+    shopping_baskets.where('status = ?', RequestBasket::IN_PROGRESS)
   end
 
   def fullname

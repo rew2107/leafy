@@ -1,4 +1,4 @@
-#requests{
+#request_baskets{
   @include user_page;
   .redding{ color: $red; }
   #request_icon{background: image-url("request_icon.png") no-repeat white; display: inline-block; width: 140px; height: 140px; text-align: center; }
@@ -21,4 +21,6 @@
 
  .active_red{ a{ color: $red; }}
  .pagination{ font-size: 16px; }
+ .small{ font-size: 20px; }
+ .bbottom{ border-top: 1px solid $light-grey; padding-top: 20px; }
 }

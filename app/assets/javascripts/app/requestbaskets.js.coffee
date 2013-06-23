@@ -1,4 +1,4 @@
-$.isolatePage('setPage', "requests", ->
+$.isolatePage('setPage', "request_baskets", ->
 
   $('.country_radio').change( (event) ->
     name = $(event.target).attr('country_name')

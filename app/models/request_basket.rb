@@ -30,7 +30,8 @@ class RequestBasket < ActiveRecord::Base
     indexes :id, :include_in_all => false, :index => :no
     indexes :photo, :as => 'requester.photo.url(:thumb)', :include_in_all => false, :index => :no
     indexes :created_at, :type => :date, :include_in_all => false, :index => :not_analyzed
-    indexes :country_id, :include_in_all => false, :index => :not_analyzed,  :analyzer => 'keyword'
+    indexes :country_id, :include_in_all => false, :index => :not_analyzed, :analyzer => 'keyword'
+    indexes :status, :include_in_all => false, :index => :not_analyzed, :analyzer => 'keyword'
     indexes :title, :analyzer => 'snowball', :boost => 10
     indexes :description, :analyzer => 'snowball', :store => false
   end

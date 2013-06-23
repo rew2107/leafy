@@ -13,7 +13,7 @@ Leafy::Application.routes.draw do
       get :in_progress
     end
   end
-  resources :requests do
+  resources :request_baskets do
     collection do 
       get :active
       get :completed

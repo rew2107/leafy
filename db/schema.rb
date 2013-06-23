@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130623030733) do
+ActiveRecord::Schema.define(:version => 20130623033117) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -37,8 +37,9 @@ ActiveRecord::Schema.define(:version => 20130623030733) do
     t.integer  "country_id"
     t.integer  "requester_id"
     t.integer  "shopper_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "status",       :default => "active"
   end
 
   create_table "requests", :force => true do |t|
@@ -48,9 +49,8 @@ ActiveRecord::Schema.define(:version => 20130623030733) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.string   "status",             :default => "active"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "request_basket_id"
   end
 
