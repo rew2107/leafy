@@ -40,11 +40,12 @@ class RequestBasketsController < ApplicationController
   end
 
   def create
-    @request = current_user.request_baskets.build(params[:request])
+    @request = current_user.request_baskets.build(params[:request_basket])
     if @request.save
       flash[:notice] = 'Your request has been posted!'
       redirect_to :action => :index
     else
+      puts @request.inspect
       render 'new'
     end
   end

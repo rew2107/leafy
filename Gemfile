@@ -17,6 +17,7 @@ end
 
 group :development, :test do
   gem "rspec-rails", "~> 2.13.0"
+  gem 'meta_request'
 end
 
 gem "bootstrap-sass", "~> 2.3.1.0"
