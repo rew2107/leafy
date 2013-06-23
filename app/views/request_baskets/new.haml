@@ -10,12 +10,12 @@
               %h2
                 Create a
                 %span.redding new
-                request
+                item basket
                 %span#country_name.small.muted= @request.country.try(:name) || 'Unknown Lands'
 
         .span9
           .row.bottom30
-            .span6.lead.bottom10 Where are you looking for this item?
+            .span6.lead.bottom10 Where are you looking for these items?
             .row
               .span6
                 - Country.all.each do |country|
@@ -24,14 +24,14 @@
                     = f.label "country_id_#{country.id}" do
                       %span.world_flag.bottom_flag{:class=>"sprite-#{country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> country.name}
               .span3
-                = f.submit "Create new request!", :class => 'btn btn-large btn-success'
+                = f.submit "Create new basket!", :class => 'btn btn-large btn-success'
 
   .row
     .span12.skip_fullspan
 
   = f.fields_for :requests do |request_form|
     .row.bbottom
-      .photo_edit_span.span3
+      .photo_edit_span.span2half
         = request_form.file_field :photo, :class => 'hidden photo_input'
         .pic.right20.favorite_pic
           =image_tag request_form.object.photo.url(:square), :class => 'img-polaroid inline'
@@ -40,9 +40,9 @@
       .span9
         .row
           .span5= request_form.text_field :title, :placeholder => 'What is the item?', :required => true
-          .span2= request_form.link_to_remove "Remove Request", :class => 'redding'
+          .span3= request_form.link_to_remove "Remove Item", :class => 'redding fright'
         .row
           .span9= request_form.text_area :description, :class => 'area', :placeholder => 'Describe any extra information here...', :required => true, :minlength => 20
-  .top30= f.link_to_add "Add a request item", :requests, :class => 'redding fright'
+  = f.link_to_add "Add a request item", :requests, :class => 'redding fright bottom40 top30'
 
 

@@ -2,11 +2,7 @@ $.isolatePage('setPage', "shoppings", ->
 
   $('#country_name').text($('.country_radio:checked').attr('country_name'))
 
-  $('.country_radio').change( (event) ->
-    name = $(event.target).attr('country_name')
-    $('#country_name').text(name)
-  )
-
+  sharedFunctions.countryPicker()
   $('.bottom_flag').tooltip({placement: 'bottom'})
   $('#shopping_location').tooltip({placement: 'right'})
 
