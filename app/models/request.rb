@@ -1,6 +1,6 @@
 class Request < ActiveRecord::Base
 
-  attr_accessible :title, :description, :photo
+  attr_accessible :title, :description, :photo, :price
 
   belongs_to :request_basket
 

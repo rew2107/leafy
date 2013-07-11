@@ -12,6 +12,9 @@
                 %span.redding new
                 item basket
                 %span#country_name.small.muted= @request.country.try(:name) || 'Unknown Lands'
+        .span9.lead
+          Total Estimated Basket Price: $
+          %span.total_price ?
 
         .span9
           .row.bottom30
@@ -39,8 +42,9 @@
             %span.badge edit photo
       .span9
         .row
-          .span5= request_form.text_field :title, :placeholder => 'What is the item?', :required => true
-          .span3= request_form.link_to_remove "Remove Item", :class => 'redding fright'
+          .span3= request_form.text_field :title, :placeholder => 'What is the item?', :required => true
+          .span4= request_form.text_field :price, :placeholder => 'About how much will it cost?', :required => true, :number => true, :class => 'request_price'
+          .span1= request_form.link_to_remove "Remove", :class => 'redding'
         .row
           .span9= request_form.text_area :description, :class => 'area', :placeholder => 'Describe any extra information here...', :required => true, :minlength => 20
   = f.link_to_add "Add a request item", :requests, :class => 'redding fright bottom40 top30'
