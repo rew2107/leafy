@@ -39,5 +39,6 @@ class RequestBasket < ActiveRecord::Base
     indexes :status, :include_in_all => false, :index => :not_analyzed, :analyzer => 'keyword'
     indexes :title, :as => 'title', :analyzer => 'snowball', :boost => 10
     indexes :description, :as => 'description', :analyzer => 'snowball', :store => false
+    indexes :price, :as => 'requests.map(&:price).compact.sum', :include_in_all => false, :type => :integer
   end
 end

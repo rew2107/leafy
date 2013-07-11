@@ -18,5 +18,6 @@
 //= require jquery-fileupload/basic
 //= require jquery.raty.min
 //= require jquery_nested_form
+//= require bootstrap-slider
 //= require_tree ./global
 //= require_tree ./app

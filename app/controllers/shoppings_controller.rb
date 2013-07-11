@@ -37,6 +37,8 @@ class ShoppingsController < ApplicationController
   private
 
   def search_requests
+    params[:price_range] = '10,1000' unless params[:price_range].present?
+    price_from, price_to = params[:price_range].split(",")
     country_id = params[:country_id]
     q = params[:q].strip if params[:q]
 
@@ -44,6 +46,7 @@ class ShoppingsController < ApplicationController
       query { string q } if q.present?
       filter(:terms, :country_id => [country_id]) if country_id.present?
       filter(:terms, :status => [RequestBasket::ACTIVE])
+      filter(:range, :price => { from: price_from, to: price_to } ) if price_from.present? && price_to.present?
     end
   end
 end
