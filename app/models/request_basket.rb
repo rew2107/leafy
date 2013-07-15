@@ -37,6 +37,7 @@ class RequestBasket < ActiveRecord::Base
 
   mapping do
     indexes :id, :include_in_all => false, :index => :no
+    indexes :requester_id, :as => 'requester.id', :include_in_all => false, :type => :integer
     indexes :photo, :as => 'requester.photo.url(:thumb)', :include_in_all => false, :index => :no
     indexes :created_at, :type => :date, :include_in_all => false, :index => :not_analyzed
     indexes :country_id, :include_in_all => false, :index => :not_analyzed, :analyzer => 'keyword'

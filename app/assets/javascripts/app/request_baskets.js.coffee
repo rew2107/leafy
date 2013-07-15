@@ -28,6 +28,7 @@ $.isolatePage('setPage', "request_baskets", ->
   $(document).on('nested:fieldAdded', (event) ->
     field = event.field
     addPriceThing(field.find('.request_price'))
+    sharedFunctions.multiPic('#new_request_basket', 'POST')
   )
   $(document).on('nested:fieldRemoved', (event) ->
     field = event.field
@@ -35,5 +36,6 @@ $.isolatePage('setPage', "request_baskets", ->
     price = 0 if isNaN(price)
     totalPrice -= price
     $('.total_price').text(totalPrice)
+    sharedFunctions.multiPic('#new_request_basket', 'POST')
   )
 )

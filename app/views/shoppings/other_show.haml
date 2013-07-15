@@ -2,18 +2,41 @@
   .well.fullspan
     .span3
       .pic
-        =image_tag @shopping.photo.url(:square), :class => 'img-polaroid'
+        =image_tag @shopping.requester.photo.url(:square), :class => 'img-polaroid'
 
     .span9
       %h2
-        = @shopping.title
+        = "Requested by #{@shopping.requester.fullname}"
         -if @shopping.country.present?
-          %span#shopping_location.world_flag{:class=>"sprite-#{@shopping.country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> @shopping.country.name}
+          %span#request_location.world_flag{:class=>"sprite-#{@shopping.country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> @shopping.country.name}
 
     .span9
+      .row.lead
+        .span7= "Estimated price of the basket: $#{@shopping.price}"
+      .row.lead
+        .span3= "#{pluralize(@shopping.requests.size, 'item')} in basket"
+        .span4
+          .btn.btn-success= "Contact #{@shopping.requester.first_name} about shopping for this basket"
+
+.row
+  .span12.skip_fullspan.basket
+
+.lead Items requested:
+.row.bottom20
+  .span12
+    - @shopping.requests.each do |req|
+      .black_seperate
+      .seperate.bottom10
       .row
-        .span5= @shopping.title
-      .row
-        .span9= @shopping.description
-      .row.bottom30
+        .span10.bottom20.shopping_link
+          .media.row
+            .span1half
+              = image_tag req.photo.url(:square), :class => 'img-polaroid inline right30'
+            .media-body.span8
+              %h4.media-heading.redding
+                = truncate(req.title, :length => 50, :separator => ' ')
+                %span.small.muted= "$#{req.price}"
+
+              .muted.inline= DateTime.parse(req.created_at.to_s).strftime('%b %-d %Y -')
+              %span= truncate(req.description, :length => 250, :separator => ' ')
 

@@ -9,6 +9,7 @@ window.sharedFunctions = window.sharedFunctions || {}
 sharedFunctions.multiPic = (formId, type ) ->
   picClicked = {}
 
+  $('.pic').unbind('click')
   $('.pic').click( (e) ->
     picClicked = $(e.target).closest('.pic')
     photoInput = picClicked.parent().find('.photo_input')
@@ -19,7 +20,6 @@ sharedFunctions.multiPic = (formId, type ) ->
     singleFileUploads: false,
     type: type || 'POST',
     add: (e, data) ->
-      photoInput = picClicked.parent().find('.photo_input')
       reader = new FileReader()
       reader.onload = (e) ->
         picClicked.find('img').attr('src', e.target.result)
