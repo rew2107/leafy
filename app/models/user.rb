@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :local_favorites, :class_name => 'FavoriteProduct', :conditions => {:foreign => false}, :limit => FavoriteProduct::MAX_ALLOWED_PER_TYPE
   has_many :request_baskets, :foreign_key => :requester_id
   has_many :shopping_baskets, :class_name => 'RequestBasket', :foreign_key => :shopper_id
+  has_many :sent_messages, :class_name => 'Message', :foreign_key => :sender_id
   belongs_to :country
 
   accepts_nested_attributes_for :favorite_products, :reject_if => lambda { |a| a[:title].blank? }, :allow_destroy => true

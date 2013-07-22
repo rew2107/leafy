@@ -9,8 +9,13 @@ class ShoppingsController < ApplicationController
 
   def show
     @shopping = RequestBasket.find(params[:id])
+    @message = @shopping.messages.build(:sender_id => current_user.id)
+
     if @shopping.shopper_id == current_user.id
       render 'owned_show'
+    elsif @shopping.requester_id == current_user.id
+      @request = @shopping
+      render 'request_baskets/show'
     else
       render 'other_show'
     end
@@ -47,6 +52,7 @@ class ShoppingsController < ApplicationController
       filter(:terms, :country_id => [country_id]) if country_id.present?
       filter(:terms, :status => [RequestBasket::ACTIVE])
       filter(:range, :price => { from: price_from, to: price_to } ) if price_from.present? && price_to.present?
+      sort { by :created_at, 'desc' }
     end
   end
 end

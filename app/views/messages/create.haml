@@ -1,0 +1,12 @@
+.row.center
+  .well.fullspan
+    .span3
+      .pic.row
+        =image_tag @message.requester.photo.url(:square), :class => 'img-polaroid'
+
+    .span8
+      %h2.row
+        = "You've sent a message to #{@message.requester.fullname}"
+      .row
+        = @message.text
+
