@@ -16,11 +16,15 @@
       .row.lead
         = "Estimated price of the basket: $#{@shopping.price}"
       .row.lead.vbottom
-        = form_for(@message) do |f|
-          = f.hidden_field :request_basket_id
-          = f.label :text, "message #{@shopping.requester.first_name} about becoming a shopper for this basket", {:class => 'control-label', :for => 'challenge_note'}
-          = f.text_area :text, :class => 'required', :id => 'message_text'
-          = f.submit "Send your message!", :class => 'btn btn-large btn-success vbottom left20'
+        - if @message
+          = form_for(@message) do |f|
+            = f.hidden_field :request_basket_id
+            = f.hidden_field :receiver_id
+            = f.label :text, "message #{@shopping.requester.first_name} about becoming a shopper for this basket", {:class => 'control-label', :for => 'challenge_note'}
+            = f.text_area :text, :class => 'required', :id => 'message_text'
+            = f.submit "Send your message!", :class => 'btn btn-large btn-success vbottom left20'
+        - else
+          You have sent a message about this basket
 
 
 .row

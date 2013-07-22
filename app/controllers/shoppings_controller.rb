@@ -9,7 +9,9 @@ class ShoppingsController < ApplicationController
 
   def show
     @shopping = RequestBasket.find(params[:id])
-    @message = @shopping.messages.build(:sender_id => current_user.id)
+    unless @shopping.messages.exists?(:sender_id => current_user.id)
+      @message = @shopping.messages.build(:sender_id => current_user.id, :receiver_id => @shopping.requester_id)
+    end
 
     if @shopping.shopper_id == current_user.id
       render 'owned_show'
