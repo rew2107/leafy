@@ -3,8 +3,8 @@
   - if user_signed_in?
     %li= link_to 'You', users_path
     %li
-      = link_to 'Inbox', '#inbox'
-      #unread_messages= @inbox_alerts
+      = link_to 'Inbox', messages_path
+      #unread_messages= @inbox_alerts.count
     %li= link_to 'Request' , request_baskets_path
     %li= link_to 'Shop' , shoppings_path
     %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'

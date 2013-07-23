@@ -1,0 +1,51 @@
+.row.center
+  .well.fullspan
+    .span3
+      .pic
+        =image_tag other_user(@message).photo.url(:square), :class => 'img-polaroid'
+
+    .span9
+      %h2
+        = "Messages between you and #{other_user(@message).fullname}"
+        - if @request.present? && @request.country.present?
+          %span#request_location.world_flag{:class=>"sprite-#{@request.country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> @request.country.name}
+
+    - if @request.present?
+      .span8
+        .row.lead
+          .span7= "Estimated price of the basket: $#{@request.price}"
+        .row.lead
+          .span3= "#{pluralize(@request.requests.size, 'item')} in basket"
+          .span3= "Status: #{@request.status}"
+
+.row
+  .span12.skip_fullspan.basket
+
+  - @all_messages.each do |msg|
+    .row.bottom20
+      .span12
+        .black_seperate
+        .seperate.bottom10
+          .span10.bottom20.request_link
+            .media.row
+              .span1
+                = image_tag msg.sender.photo(:thumb), :class => 'img-polaroid fav_photo inline right30'
+              .media-body.span4
+                %h4.media-heading.redding= truncate("Message from #{msg.sender.fullname}", :length => 125, :separator => ', ')
+                .muted.inline= msg.created_at.strftime('%b %-d %Y -')
+                %span= msg.text
+  .row.bottom20.top20
+    .span12
+      .black_seperate
+      .seperate.bottom10
+        .span10.bottom20.request_link.top20
+          .media.row
+            = form_for(@new_message) do |f|
+              = f.hidden_field :request_basket_id
+              = f.hidden_field :parent_message_id
+              = f.hidden_field :receiver_id
+              = f.label :text, "Reply to #{other_user(@message).fullname}", {:class => 'control-label bold', :for => 'message_text'}
+              = f.text_area :text, :class => 'required', :id => 'message_text'
+              = f.submit "Send your message!", :class => 'btn btn-large btn-success vbottom left20'
+
+

@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 
   def find_inbox_items
     return unless user_signed_in?
-    puts "!@#!@"
-    @inbox_alerts = current_user.received_messages.where(:read => false).count
+    @inbox_alerts = current_user.received_messages.where(:read => false)
   end
 end

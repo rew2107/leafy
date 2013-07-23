@@ -1,0 +1,6 @@
+#messages{
+  @include user_page;
+
+  #message_text{ width: 600px; height: 150px;}
+
+}
