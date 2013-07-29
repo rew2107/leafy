@@ -3,8 +3,6 @@
     .span3
       .pic.row
         =image_tag @request.requester.photo.url(:square), :class => 'img-polaroid'
-      .row.top30.lead
-        = "#{pluralize(@request.requests.size, 'item')} in basket"
 
     .span9
       %h2.row
@@ -15,13 +13,11 @@
     .span9
       .row.lead
         = "Estimated price of the basket: $#{@request.price}"
-      .row.lead.vbottom
-        = form_for(@message) do |f|
-          = f.hidden_field :receiver_id
-          = f.label :text, "message #{@request.requester.first_name} about becoming a shopper for this basket", {:class => 'control-label', :for => 'challenge_note'}
-          = f.text_area :text, :class => 'required', :id => 'message_text'
-          = f.submit "Send your message!", :class => 'btn btn-large btn-success vbottom left20'
-
+      .row.lead
+        = "#{pluralize(@request.requests.size, 'item')} in basket"
+      .row.lead.vbottom.top10
+        .btn.btn-success{:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#msg_modal"} Message User
+        .btn.btn-danger{:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#bid_modal"} Bid On This Request
 
 .row
   .span12.skip_fullspan.basket
@@ -45,3 +41,30 @@
               .muted.inline= DateTime.parse(req.created_at.to_s).strftime('%b %-d %Y -')
               %span= truncate(req.description, :length => 250, :separator => ' ')
 
+
+.modal.hide{:id=>"msg_modal", :tabindex=>"-1", :role=>"dialog", :'aria-labelledby'=>"myModalLabel", :'aria-hidden'=>"true"}
+  .modal-header
+    %button{:type=>"button", :class=>"close", :'data-dismiss'=>"modal", :'aria-hidden' => "true"}
+      &times;
+    %h3= "Message #{@request.requester.first_name}"
+  .modal-body
+    = form_for(@message) do |f|
+      = f.hidden_field :receiver_id
+      = f.text_field :title, :class => 'required', :id => 'message_title'
+      = f.label :text, "message #{@request.requester.first_name} about becoming a shopper for this basket", {:class => 'control-label', :for => 'challenge_note'}
+      = f.text_area :text, :class => 'required', :id => 'message_text'
+      = f.submit "Send your message!", :class => 'btn btn-large btn-success vbottom left20'
+  .modal-footer
+
+
+.modal.hide{:id=>"bid_modal", :tabindex=>"-1", :role=>"dialog", :'aria-labelledby'=>"myModalLabel", :'aria-hidden'=>"true"}
+  .modal-header
+    %button{:type=>"button", :class=>"close", :'data-dismiss'=>"modal", :'aria-hidden' => "true"}
+      &times;
+    %h3= "Bid!"
+  .modal-body
+    = form_for(@bid) do |f|
+      = f.hidden_field :request_basket_id
+      = f.text_field :amount, :class => 'required', :id => 'message_title'
+      = f.submit "Submit your bid", :class => 'btn btn-large btn-success vbottom left20'
+  .modal-footer

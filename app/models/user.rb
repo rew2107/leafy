@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :sent_messages, :class_name => 'Message', :foreign_key => :sender_id
   has_many :received_messages, :class_name => 'Message', :foreign_key => :receiver_id
   belongs_to :country
+  has_many :bids
 
   accepts_nested_attributes_for :favorite_products, :reject_if => lambda { |a| a[:title].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :foreign_favorites, :reject_if => lambda { |a| a[:title].blank? }, :allow_destroy => true
@@ -26,6 +27,10 @@ class User < ActiveRecord::Base
     thumb: '64x64#',
     square: '140x140#'
   }
+
+  def offers
+    Bid.where(:request_basket_id => self.request_baskets.map(&:id))
+  end
 
   def active_request_baskets
     request_baskets.where('status = ?', RequestBasket::ACTIVE)

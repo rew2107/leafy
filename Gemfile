@@ -20,7 +20,7 @@ group :development, :test do
   gem 'meta_request'
 end
 
-gem "bootstrap-sass", "~> 2.3.1.0"
+gem "bootstrap-sass", "~> 2.3.2.1"
 gem "jquery-ui-rails", "~> 4.0.2"
 gem "jquery-rails", "~> 2.2.1"
 gem "hashie", "~> 2.0.2"

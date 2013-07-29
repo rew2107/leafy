@@ -27,6 +27,7 @@ class RequestBasketsController < ApplicationController
         :title => "Message about request: #{request_basket_url(@request)}",
         :text => "I am interested in fulfilling request #{request_basket_url(@request)}"
       )
+      @bid = current_user.bids.build(:request_basket_id => @request.id, :amount => @request.price)
     end
   end
 
