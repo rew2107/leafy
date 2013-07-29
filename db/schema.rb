@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729221828) do
+ActiveRecord::Schema.define(:version => 20130729225523) do
 
   create_table "bids", :force => true do |t|
     t.integer  "amount"
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20130729221828) do
     t.datetime "photo_updated_at"
     t.text     "description"
     t.integer  "country_id"
+    t.datetime "birthdate"
+    t.string   "gender"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
