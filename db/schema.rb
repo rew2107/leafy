@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722233651) do
+ActiveRecord::Schema.define(:version => 20130729213330) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -35,13 +35,13 @@ ActiveRecord::Schema.define(:version => 20130722233651) do
 
   create_table "messages", :force => true do |t|
     t.integer  "sender_id"
-    t.integer  "request_basket_id"
     t.integer  "parent_message_id"
     t.boolean  "read",              :default => false
     t.text     "text"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
     t.integer  "receiver_id"
+    t.string   "title"
   end
 
   create_table "request_baskets", :force => true do |t|

@@ -1,10 +1,12 @@
 $.isolatePage('setPage', "request_baskets", ->
 
+  $('#country_name').text($('.country_radio:checked').attr('country_name'))
   sharedFunctions.countryPicker()
   sharedFunctions.multiPic('#new_request_basket', 'POST')
 
   $('.bottom_flag').tooltip({placement: 'bottom'})
   $('#request_location').tooltip({placement: 'right'})
+  $('#shopping_location').tooltip({placement: 'right'})
 
   totalPrice = 0
 
@@ -38,4 +40,14 @@ $.isolatePage('setPage', "request_baskets", ->
     $('.total_price').text(totalPrice)
     sharedFunctions.multiPic('#new_request_basket', 'POST')
   )
+
+
+  $('#price_slide').slider({
+    tooltip: 'show'
+  }).on('slide', (ev) ->
+    val = $(ev.target).slider('getValue').val().split(",")
+    $('#slider_left').text("$#{val[0]}")
+    $('#slider_right').text("$#{val[1]}")
+  )
+
 )

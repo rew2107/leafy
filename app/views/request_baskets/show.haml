@@ -1,27 +1,32 @@
 .row.center
   .well.fullspan
     .span3
-      .pic
+      .pic.row
         =image_tag @request.requester.photo.url(:square), :class => 'img-polaroid'
+      .row.top30.lead
+        = "#{pluralize(@request.requests.size, 'item')} in basket"
 
     .span9
-      %h2
-        = "Requested in #{@request.country.name}"
+      %h2.row
+        = "Requested by #{@request.requester.fullname}"
         -if @request.country.present?
           %span#request_location.world_flag{:class=>"sprite-#{@request.country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> @request.country.name}
 
     .span9
       .row.lead
-        .span7= "Estimated price of the basket: $#{@request.price}"
-      .row.lead
-        .span7= "#{pluralize(@request.requests.size, 'item')} in basket"
-      .row.lead
-        .span7= "Status: #{@request.status}"
+        = "Estimated price of the basket: $#{@request.price}"
+      .row.lead.vbottom
+        = form_for(@message) do |f|
+          = f.hidden_field :receiver_id
+          = f.label :text, "message #{@request.requester.first_name} about becoming a shopper for this basket", {:class => 'control-label', :for => 'challenge_note'}
+          = f.text_area :text, :class => 'required', :id => 'message_text'
+          = f.submit "Send your message!", :class => 'btn btn-large btn-success vbottom left20'
+
 
 .row
   .span12.skip_fullspan.basket
 
-.lead Items requested:
+.lead.top80 Items requested:
 .row.bottom20
   .span12
     - @request.requests.each do |req|

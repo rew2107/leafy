@@ -39,3 +39,4 @@ gem "gon", "~> 4.1.1"
 gem "tire", "~> 0.6.0"
 gem "oj", "~> 2.0.14"
 gem "nested_form"
+gem 'paypal_adaptive'

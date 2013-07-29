@@ -9,7 +9,7 @@
           %h2 
             Shop Requests
             %span.muted.small= "#{@search.total > 0 ? @search.offset + 1 : 0} - #{@search.offset + @search.size} of #{pluralize @search.total, "request"} found"
-          =form_tag search_shoppings_path, :method => 'get' do
+          =form_tag search_request_baskets_path, :method => 'get' do
             .row
               .span4
                 = text_field_tag :q, params[:q], :id => 'search_input', :placeholder => 'Keywords'
@@ -20,7 +20,7 @@
                   %span -
                   %span#slider_right= "$#{params[:price_range].split(',').last}"
                 .row
-                  %input#price_slide(name='price_range' type="text" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[#{params[:price_range]}]" data-slider-orientation="horizontal" data-slider-selection="after"data-slider-tooltip="hide")
+                  %input#price_slide(name='price_range' type="text" value="" data-slider-min="0" data-slider-max="1000" data-slider-step="5" data-slider-value="[#{params[:price_range]}]" data-slider-orientation="horizontal" data-slider-selection="after"data-slider-tooltip="hide")
             .row
               .span5.category_filter
                 %h5 
@@ -42,7 +42,7 @@
     - @shoppings.each do |req|
       .black_seperate
       .seperate.bottom10
-      =link_to shopping_path(req) do
+      =link_to request_basket_path(req) do
         .row
           .span10.bottom20.shopping_link
             .media.row
@@ -58,5 +58,5 @@
 
 .row
   .span5.fright.active_red
-    = paginate @search, :params => {:controller => 'shoppings', :action => 'search'}
+    = paginate @search, :params => {:controller => 'request_baskets', :action => 'search'}
 

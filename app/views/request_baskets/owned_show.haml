@@ -2,21 +2,21 @@
   .well.fullspan
     .span3
       .pic
-        =image_tag @shopping.requester.photo.url(:square), :class => 'img-polaroid'
+        =image_tag @request.requester.photo.url(:square), :class => 'img-polaroid'
 
     .span9
       %h2
-        = "You are shopping this basket"
-        -if @shopping.country.present?
-          %span#request_location.world_flag{:class=>"sprite-#{@shopping.country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> @shopping.country.name}
+        = "Requested By You"
+        -if @request.country.present?
+          %span#request_location.world_flag{:class=>"sprite-#{@request.country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> @request.country.name}
 
     .span9
       .row.lead
-        .span7= "Estimated price of the basket: $#{@shopping.price}"
+        .span7= "Estimated price of the basket: $#{@request.price}"
       .row.lead
-        .span7= "#{pluralize(@shopping.requests.size, 'item')} in basket"
+        .span7= "#{pluralize(@request.requests.size, 'item')} in basket"
       .row.lead
-        .span7= "Status: #{@shopping.status}"
+        .span7= "Status: #{@request.status}"
 
 .row
   .span12.skip_fullspan.basket
@@ -24,7 +24,7 @@
 .lead Items requested:
 .row.bottom20
   .span12
-    - @shopping.requests.each do |req|
+    - @request.requests.each do |req|
       .black_seperate
       .seperate.bottom10
       .row

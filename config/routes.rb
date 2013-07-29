@@ -7,18 +7,11 @@ Leafy::Application.routes.draw do
 
   resources :users, :only => [:index, :show]
   resources :messages, :only => [:create, :index, :show]
-  resources :shoppings, :only => [:index, :show] do
-    collection do
-      get :search
-      get :completed
-      get :in_progress
-    end
-  end
   resources :request_baskets do
     collection do 
+      get :search
       get :active
       get :completed
-      get :in_progress
     end
   end
 

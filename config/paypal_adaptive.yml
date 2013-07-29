@@ -1,0 +1,24 @@
+development:
+  environment: "sandbox"
+  username: "fraustollc-facilitator_api1.gmail.com"
+  password: "1375128140"
+  signature: "AFrw7VN6Jyx8i2veVBbp9IpHZI9VAgx5YBAz-2YDuV8rMe0-ZOmnybOs"
+  application_id: "APP-80W284485P519543T"
+  api_cert_file:
+
+test:
+  environment: "sandbox"
+  username: "fraustollc-facilitator_api1.gmail.com"
+  password: "1375128140"
+  signature: "AFrw7VN6Jyx8i2veVBbp9IpHZI9VAgx5YBAz-2YDuV8rMe0-ZOmnybOs"
+  application_id: "APP-80W284485P519543T"
+  api_cert_file:
+
+production:
+  environment: "sandbox"
+  username: "fraustollc-facilitator_api1.gmail.com"
+  password: "1375128140"
+  signature: "AFrw7VN6Jyx8i2veVBbp9IpHZI9VAgx5YBAz-2YDuV8rMe0-ZOmnybOs"
+  application_id: "APP-80W284485P519543T"
+  api_cert_file:
+

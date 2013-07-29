@@ -6,7 +6,7 @@
       = link_to 'Inbox', messages_path
       #unread_messages= @inbox_alerts.count
     %li= link_to 'Request' , request_baskets_path
-    %li= link_to 'Shop' , shoppings_path
+    %li= link_to 'Shop' , search_request_baskets_path
     %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
   - else
     %li= link_to 'Login', '#login', {:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#login_modal"}
