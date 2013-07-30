@@ -27,9 +27,9 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.sent_messages.build(params[:message])
     unless @message.save
-      flash[:error] = 'message not sent' unless @message.save
+      flash[:error] = 'message not sent'
     else
-      flash[:success] = 'message sent' unless @message.save
+      flash[:success] = 'message sent'
     end
     id = @message.parent_message_id || @message.id
     redirect_to message_path(id)

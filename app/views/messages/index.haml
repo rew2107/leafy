@@ -41,7 +41,7 @@
               .span1
                 = image_tag other_search_user(msg).photo(:thumb), :class => 'img-polaroid fav_photo inline right30'
               .media-body.span11
-                %h4.media-heading.redding= truncate("your convo with #{other_search_user(msg).fullname}", :length => 75, :separator => ', ')
+                %h4.media-heading.redding= truncate("#{other_search_user(msg).fullname}: #{msg.title}", :length => 75, :separator => ', ')
                 .muted.inline= DateTime.parse(msg.created_at).strftime('%b %-d %Y -')
                 %span= truncate(msg.all_text, :length => 170, :separator => ' ')
 .row

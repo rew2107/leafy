@@ -26,7 +26,9 @@ class Message < ActiveRecord::Base
     indexes :sender_name, :as => 'receiver.fullname'
     indexes :created_at, :type => :date, :include_in_all => false, :index => :not_analyzed
     indexes :read_all, :as => 'read_all', type: "boolean", :include_in_all => false
-    indexes :all_text, :analyzer => 'snowball'
+    indexes :all_text, :as => 'all_text', :analyzer => 'snowball'
+    indexes :text, :analyzer => 'snowball'
+    indexes :title, :analyzer => 'snowball'
   end
 
   def read_all
@@ -36,16 +38,18 @@ class Message < ActiveRecord::Base
   end
 
   def all_text
-    text = self.messages.map do |m|
+    self.messages.map do |m|
       [m.text, m.title].join(' ')
-    end
-    text << [self.text, self.title].join(' ')
-    text.join(' ')
+    end.join(' ')
   end
 
   private
 
   def update_tire
-    tire.update_index if self.parent_message_id.blank?
+    if self.parent_message_id.blank?
+      tire.update_index
+    else
+      self.parent_message.update_index
+    end
   end
 end

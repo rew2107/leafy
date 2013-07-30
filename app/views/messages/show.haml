@@ -5,8 +5,8 @@
         =image_tag other_user(@message).photo.url(:square), :class => 'img-polaroid'
 
     .span9
-      %h2
-        = "Messages between you and #{other_user(@message).fullname}"
+      %h2= "Convo with #{other_user(@message).fullname}"
+      %h3= @message.title
 
 .row
   .span12.skip_fullspan.basket
