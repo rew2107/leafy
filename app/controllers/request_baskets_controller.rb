@@ -3,8 +3,10 @@ class RequestBasketsController < ApplicationController
 
   def index
     @user = current_user
+    params[:c_false] = params[:c_true] = true if params[:c_false].nil? && params[:c_true].nil?
     completed = params[:c_true]
     active = params[:c_false]
+
 
     country_id = params[:country_id]
     user = current_user
