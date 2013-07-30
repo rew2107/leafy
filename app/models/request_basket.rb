@@ -2,11 +2,7 @@ class RequestBasket < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
-  ACTIVE = 'active'
-  IN_PROGRESS = 'progress'
-  COMPLETED = 'complete'
-
-  attr_accessible :country_id, :requests_attributes
+  attr_accessible :country_id, :requests_attributes, :completed
 
   belongs_to :country
   belongs_to :requester, :class_name => 'User'
@@ -42,7 +38,7 @@ class RequestBasket < ActiveRecord::Base
     indexes :photo, :as => 'requester.photo.url(:thumb)', :include_in_all => false, :index => :no
     indexes :created_at, :type => :date, :include_in_all => false, :index => :not_analyzed
     indexes :country_id, :include_in_all => false, :index => :not_analyzed, :analyzer => 'keyword'
-    indexes :status, :include_in_all => false, :index => :not_analyzed, :analyzer => 'keyword'
+    indexes :completed, type: "boolean", :include_in_all => false, :index => :not_analyzed
     indexes :title, :as => 'title', :analyzer => 'snowball', :boost => 10
     indexes :description, :as => 'description', :analyzer => 'snowball', :store => false
     indexes :price, :as => 'price', :include_in_all => false, :type => :integer

@@ -7,16 +7,6 @@
     .span9
       %h2
         = "Messages between you and #{other_user(@message).fullname}"
-        - if @request.present? && @request.country.present?
-          %span#request_location.world_flag{:class=>"sprite-#{@request.country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> @request.country.name}
-
-    - if @request.present?
-      .span8
-        .row.lead
-          .span7= "Estimated price of the basket: $#{@request.price}"
-        .row.lead
-          .span3= "#{pluralize(@request.requests.size, 'item')} in basket"
-          .span3= "Status: #{@request.status}"
 
 .row
   .span12.skip_fullspan.basket
@@ -41,7 +31,6 @@
         .span10.bottom20.request_link.top20
           .media.row
             = form_for(@new_message) do |f|
-              = f.hidden_field :request_basket_id
               = f.hidden_field :parent_message_id
               = f.hidden_field :receiver_id
               = f.label :text, "Reply to #{other_user(@message).fullname}", {:class => 'control-label bold', :for => 'message_text'}

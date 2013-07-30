@@ -11,13 +11,9 @@ class MessagesController < ApplicationController
     @message = Message.where("receiver_id = ? or sender_id = ?", current_user.id, current_user.id ).where(:id => params[:id]).includes(:messages).limit(1).first
     return unless @message.present?
 
-    @request = @message.request_basket
-
     @message.messages.where(:receiver_id => current_user.id).update_all(:read => true)
     @message.update_attributes(:read => true) if @message.receiver_id == current_user.id
-
     @all_messages = [@message] + @message.messages.order('created_at ASC')
-
     @new_message = @message.messages.build(:receiver_id => other_user(@message).id, :parent_message_id => @message.id)
   end
 

@@ -16,7 +16,7 @@
       .row.lead
         .span7= "#{pluralize(@request.requests.size, 'item')} in basket"
       .row.lead
-        .span7= "Status: #{@request.status}"
+        .span7= "Status: #{@request.completed ? 'Completed' : 'Active'}"
 
 .row
   .span12.skip_fullspan.basket

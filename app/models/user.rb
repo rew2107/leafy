@@ -32,26 +32,6 @@ class User < ActiveRecord::Base
     Bid.where(:request_basket_id => self.request_baskets.map(&:id))
   end
 
-  def active_request_baskets
-    request_baskets.where('status = ?', RequestBasket::ACTIVE)
-  end
-
-  def in_progress_request_baskets
-    request_baskets.where('status = ?', RequestBasket::IN_PROGRESS)
-  end
-
-  def completed_request_baskets
-    request_baskets.where('status = ?', RequestBasket::COMPLETED)
-  end
-
-  def completed_shopping_baskets
-    shopping_baskets.where('status = ?', RequestBasket::COMPLETED)
-  end
-
-  def in_progress_shopping_baskets
-    shopping_baskets.where('status = ?', RequestBasket::IN_PROGRESS)
-  end
-
   def fullname
     "#{first_name} #{last_name}" if first_name.present? || last_name.present?
   end

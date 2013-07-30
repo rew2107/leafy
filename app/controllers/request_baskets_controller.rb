@@ -3,9 +3,25 @@ class RequestBasketsController < ApplicationController
 
   def index
     @user = current_user
-    @in_progress_requests = @user.in_progress_request_baskets.limit(4).order('created_at DESC')
-    @active_requests = @user.active_request_baskets.limit(4).order('created_at DESC')
-    @completed_requests = @user.completed_request_baskets.limit(4).order('created_at DESC')
+    completed = params[:c_true]
+    active = params[:c_false]
+
+    country_id = params[:country_id]
+    user = current_user
+
+    completed = if active && !completed
+      false
+    elsif !active && completed
+      true
+    else
+      nil
+    end
+    @search = RequestBasket.search :page => (params[:page] || 1) do
+      filter(:term, :country_id => country_id) if country_id.present?
+      filter(:term, :completed => completed) if completed.present?
+      filter(:term, :requester_id => user.id)
+      sort { by :created_at, 'desc' }
+    end
   end
 
   def edit
@@ -36,18 +52,6 @@ class RequestBasketsController < ApplicationController
     @shoppings = @search.results
   end
 
-  def active
-    @title = 'Active'
-    @requests = current_user.active_request_baskets.order('created_at DESC').page params[:page]
-    render 'list'
-  end
-
-  def completed
-    @title = 'Completed'
-    @requests = current_user.completed_request_baskets.order('created_at DESC').page params[:page]
-    render 'list'
-  end
-
   def create
     @request = current_user.request_baskets.build(params[:request_basket])
     if @request.save
@@ -69,8 +73,8 @@ class RequestBasketsController < ApplicationController
 
     @search = RequestBasket.search :page => (params[:page] || 1) do
       query { string q } if q.present?
-      filter(:terms, :country_id => [country_id]) if country_id.present?
-      filter(:terms, :status => [RequestBasket::ACTIVE])
+      filter(:term, :country_id => country_id) if country_id.present?
+      filter(:term, :completed => false)
       filter(:range, :price => { from: price_from, to: price_to } ) if price_from.present? && price_to.present?
       sort { by :created_at, 'desc' }
     end
