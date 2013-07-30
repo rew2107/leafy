@@ -18,7 +18,7 @@ class RequestBasketsController < ApplicationController
     end
     @search = RequestBasket.search :page => (params[:page] || 1) do
       filter(:term, :country_id => country_id) if country_id.present?
-      filter(:term, :completed => completed) if completed.present?
+      filter(:term, :completed => completed) unless completed.nil?
       filter(:term, :requester_id => user.id)
       sort { by :created_at, 'desc' }
     end
