@@ -2,13 +2,20 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    messages = Message.where("receiver_id = ? or sender_id = ?", current_user.id, current_user.id ).where(:parent_message_id => nil).order(:created_at)
-    unread_ids = @inbox_alerts.map(&:parent_message_id).compact + messages.where(:read => false).map(&:id)
-    @unread_messages, @read_messages = messages.partition{ |m| unread_ids.include? m.id }
+    user = current_user
+    read_all = true_false_terms(:c_true,:c_false)
+    q = params[:q]
+
+    @search = Message.search :page => (params[:page] || 1) do
+      query { string q } if q.present?
+      filter(:term, :read_all => read_all) unless read_all.nil?
+      sort { by :created_at, 'desc' }
+      filter(:or, [{:term => {:receiver_id => user.id}},{:term => {:sender_id => user.id}}])
+    end
   end
 
   def show
-    @message = Message.where("receiver_id = ? or sender_id = ?", current_user.id, current_user.id ).where(:id => params[:id]).includes(:messages).limit(1).first
+    @message = Message.where("receiver_id = ? or sender_id = ?", current_user.id, current_user.id ).where(:id => params[:id]).includes(:messages).first
     return unless @message.present?
 
     @message.messages.where(:receiver_id => current_user.id).update_all(:read => true)

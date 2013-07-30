@@ -9,41 +9,42 @@
 .row
   .span12.skip_fullspan
 
-  .row.bottom20
-    .span12
-      .black_seperate
-      .seperate.bottom10
-      .lead 
-        Your
-        %span.redding unread
-        messages
-      - @unread_messages.each do |msg|
-        =link_to message_path(msg) do
-          .span5.bottom20.request_link
-            .media.row
-              .span1
-                = image_tag other_user(msg).photo(:thumb), :class => 'img-polaroid fav_photo inline right30'
-              .media-body.span4
-                %h4.media-heading.redding= truncate('unread message', :length => 25, :separator => ', ')
-                .muted.inline= msg.created_at.strftime('%b %-d %Y -')
-                %span= truncate(msg.text, :length => 70, :separator => ' ')
+.row
+  .span12
+    .lead
+      Your Messages
+      %span.muted.small= "#{@search.total > 0 ? @search.offset + 1 : 0} - #{@search.offset + @search.size} of #{pluralize @search.total, "request"} found"
 
-  .row.bottom20
-    .span12
-      .black_seperate
-      .seperate.bottom10
-      .lead 
-        Your
-        %span.redding read
-        messages
-      - @read_messages.each do |msg|
-        =link_to message_path(msg) do
-          .span5.bottom20.request_link
+    =form_tag messages_path, :method => 'get' do
+      .row.top20
+        .span7
+          = text_field_tag :q, params[:q], :id => 'search_input', :placeholder => 'Keywords'
+      .row
+        .span3
+          = check_box_tag(:c_true, 1, params[:c_true], :class => 'inline')
+          = label_tag(:c_true, "Read Messages", :class => 'inline bold')
+        .span3
+          = check_box_tag(:c_false, 1, params[:c_false], :class => 'inline')
+          = label_tag(:c_false, "Unread Messages", :class => 'inline bold')
+      .row
+        .span3.top40= submit_tag :Search, :class => 'btn btn-danger', :id => 'search_button'
+
+.row.bottom20
+  .span12
+    - @search.results.each do |msg|
+      .row
+        .black_seperate
+        .seperate.bottom10
+        =link_to message_path(msg.id) do
+          .span12.bottom20.request_link
             .media.row
               .span1
-                = image_tag other_user(msg).photo(:thumb), :class => 'img-polaroid fav_photo inline right30'
-              .media-body.span4
-                %h4.media-heading.redding= truncate('read message', :length => 25, :separator => ', ')
-                .muted.inline= msg.created_at.strftime('%b %-d %Y -')
-                %span= truncate(msg.text, :length => 70, :separator => ' ')
+                = image_tag other_search_user(msg).photo(:thumb), :class => 'img-polaroid fav_photo inline right30'
+              .media-body.span11
+                %h4.media-heading.redding= truncate("your convo with #{other_search_user(msg).fullname}", :length => 75, :separator => ', ')
+                .muted.inline= DateTime.parse(msg.created_at).strftime('%b %-d %Y -')
+                %span= truncate(msg.all_text, :length => 170, :separator => ' ')
+.row
+  .span5.fright.active_red
+    = paginate @search, :params => {:controller => 'messages', :action => 'index'}
 

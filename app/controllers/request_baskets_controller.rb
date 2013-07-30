@@ -3,21 +3,10 @@ class RequestBasketsController < ApplicationController
 
   def index
     @user = current_user
-    params[:c_false] = params[:c_true] = true if params[:c_false].nil? && params[:c_true].nil?
-    completed = params[:c_true]
-    active = params[:c_false]
-
-
     country_id = params[:country_id]
     user = current_user
+    completed = true_false_terms(:c_true,:c_false)
 
-    completed = if active && !completed
-      false
-    elsif !active && completed
-      true
-    else
-      nil
-    end
     @search = RequestBasket.search :page => (params[:page] || 1) do
       filter(:term, :country_id => country_id) if country_id.present?
       filter(:term, :completed => completed) unless completed.nil?
