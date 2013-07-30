@@ -4,30 +4,24 @@
       .span2half
         #message_icon.img-polaroid
       .span9
-        %h2 Your inbox
-        %p= "You have #{@inbox_alerts.count} unread messages"
+        %h2
+          Your messages
+          %span.muted.small= "#{@search.total > 0 ? @search.offset + 1 : 0} - #{@search.offset + @search.size} of #{pluralize @search.total, "message"} found"
+        =form_tag messages_path, :method => 'get' do
+          .row.top20
+            .span7
+              = text_field_tag :q, params[:q], :id => 'search_input', :placeholder => 'Keywords'
+          .row
+            .span3
+              = check_box_tag(:c_true, 1, params[:c_true], :class => 'inline')
+              = label_tag(:c_true, "Read Messages", :class => 'inline bold')
+            .span3
+              = check_box_tag(:c_false, 1, params[:c_false], :class => 'inline')
+              = label_tag(:c_false, "Unread Messages", :class => 'inline bold')
+            .span3= submit_tag :Search, :class => 'btn btn-danger', :id => 'search_button'
+
 .row
   .span12.skip_fullspan
-
-.row
-  .span12
-    .lead
-      Your Messages
-      %span.muted.small= "#{@search.total > 0 ? @search.offset + 1 : 0} - #{@search.offset + @search.size} of #{pluralize @search.total, "request"} found"
-
-    =form_tag messages_path, :method => 'get' do
-      .row.top20
-        .span7
-          = text_field_tag :q, params[:q], :id => 'search_input', :placeholder => 'Keywords'
-      .row
-        .span3
-          = check_box_tag(:c_true, 1, params[:c_true], :class => 'inline')
-          = label_tag(:c_true, "Read Messages", :class => 'inline bold')
-        .span3
-          = check_box_tag(:c_false, 1, params[:c_false], :class => 'inline')
-          = label_tag(:c_false, "Unread Messages", :class => 'inline bold')
-      .row
-        .span3.top40= submit_tag :Search, :class => 'btn btn-danger', :id => 'search_button'
 
 .row.bottom20
   .span12

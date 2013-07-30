@@ -3,12 +3,15 @@ class MessagesController < ApplicationController
 
   def index
     user = current_user
-    read_all = true_false_terms(:c_true,:c_false)
+    read = true_false_terms(:c_true,:c_false)
     q = params[:q]
 
     @search = Message.search :page => (params[:page] || 1) do
       query { string q } if q.present?
-      filter(:term, :read_all => read_all) unless read_all.nil?
+      unless read.nil?
+        filter(:term, :unread_id => user.id) unless read
+        filter(:not, {:term => {:unread_id => user.id}}) if read
+      end
       sort { by :created_at, 'desc' }
       filter(:or, [{:term => {:receiver_id => user.id}},{:term => {:sender_id => user.id}}])
     end

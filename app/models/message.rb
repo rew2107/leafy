@@ -25,16 +25,17 @@ class Message < ActiveRecord::Base
     indexes :receiver_name, :as => 'receiver.fullname'
     indexes :sender_name, :as => 'receiver.fullname'
     indexes :created_at, :type => :date, :include_in_all => false, :index => :not_analyzed
-    indexes :read_all, :as => 'read_all', type: "boolean", :include_in_all => false
+    indexes :unread_id, :as => 'unread_id', type: "integer", :include_in_all => false
     indexes :all_text, :as => 'all_text', :analyzer => 'snowball'
     indexes :text, :analyzer => 'snowball'
     indexes :title, :analyzer => 'snowball'
   end
 
-  def read_all
-    return self.read if self.read == false || self.parent_message_id.present?
-    return false if self.messages.exists?(:read => false)
-    true
+  def unread_id
+    return self.receiver_id if self.read == false
+    unread_message = self.messages.where(:read => false).first
+    return nil unless unread_message.present?
+    unread_message.receiver_id
   end
 
   def all_text

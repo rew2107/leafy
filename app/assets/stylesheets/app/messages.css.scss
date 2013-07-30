@@ -2,6 +2,6 @@
   @include user_page;
 
   #message_text{ width: 600px; height: 150px;}
-
   #message_icon{background: image-url("email-icon.jpg") no-repeat white; display: inline-block; width: 140px; height: 140px; text-align: center; }
+  .small{ font-size: 15px; font-weight: 200; }
 }
