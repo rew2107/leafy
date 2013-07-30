@@ -30,11 +30,7 @@
           .span6.small.bottom10 Where are you looking for this item?
           .row
             .span6
-              - Country.all.each do |country|
-                .span1
-                  = f.radio_button :country_id, country.id, :class => 'hidden country_radio', :country_name => "#{country.name}"
-                  = f.label "country_id_#{country.id}" do
-                    %span.world_flag{:class=>"sprite-#{country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> country.name}
+              =render 'shared/country_picker'
             .span3
               = f.submit "Create new request!", :class => 'btn btn-success'
 

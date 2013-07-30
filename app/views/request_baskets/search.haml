@@ -27,11 +27,7 @@
                   Choose a country:
                   %span#country_name.redding Unknown Lands
                 .row
-                  - Country.all.each do |country|
-                    .spanhalf
-                      = radio_button_tag :country_id, country.id, params[:country_id].to_i == country.id, {:class => 'hidden country_radio', :country_name => "#{country.name}"}
-                      = label_tag "country_id_#{country.id}" do
-                        %span.world_flag.bottom_flag{:class=>"sprite-#{country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> country.name}
+                  =render 'shared/country_picker'
               .span3.top40= submit_tag :Search, :class => 'btn btn-danger', :id => 'search_button'
 
 .row
