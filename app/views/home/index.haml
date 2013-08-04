@@ -1,10 +1,10 @@
 #email_signup.row
   %p.lead#headline.text-center
-    Get started trading makeup and shit.
+    Find Makeup, Swap Styles.
   %p.lead.text-center
-    Best Makeup Dawg.
+    get exactly what you want
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-    .bottom
+    #centerize.text-center.row
       .span3.control-group.offset1
         = f.label :email, {:class => 'control-label', :for => 'user_email'}
         .controls
@@ -18,5 +18,5 @@
         .controls
           = f.password_field :password_confirmation, :size => 45, :class => 'required', :minlength => '6', :equalTo => "#user_password"
       .span2
-        = f.submit "Sign up", :class => 'btn btn-large btn-success'
+        = f.submit "Sign up", :class => 'btn btn-large btn-pink'
 

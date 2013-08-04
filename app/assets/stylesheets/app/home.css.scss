@@ -1,18 +1,21 @@
 #home{
   #email_signup{
-    padding: 45px 0 10px 0;
-    color: white;
-    .control-group.error, .control-group.success{ .control-label, .help-inline { color: white; }}
+    padding: 40px 0 20px 0;
+    background-color: white;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 102%;
   }
   #headline{ font-size: 40px; }
-  .lead{ text-shadow: 1px 2px 1px black;}
   .btn{ margin-top: 12px; }
   .bottom{ margin-bottom: 70px; }
 
-  background: image-url("leaf.jpg") no-repeat center center fixed;
+  background: image-url("four.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  #main_nav{ a {text-shadow: 1px 2px 1px black;}}
+  #centerize{ margin-left: 10%; margin-top: 40px; width: 975px;}
+
 }
