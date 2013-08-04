@@ -1,17 +1,17 @@
 #home{
   #email_signup{
     padding: 40px 0 20px 0;
-    background-color: white;
     position: absolute;
     top: 25%;
     left: 0;
     width: 102%;
+    background-color:rgba(255,255,255,0.8);
   }
   #headline{ font-size: 40px; }
   .btn{ margin-top: 12px; }
   .bottom{ margin-bottom: 70px; }
 
-  background: image-url("four.jpg") no-repeat center center fixed;
+  background: image-url("four.jpg") no-repeat top center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
