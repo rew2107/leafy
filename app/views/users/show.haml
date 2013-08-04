@@ -1,0 +1,64 @@
+.row.center
+  .well.fullspan
+    .span12
+      .span2half
+        = image_tag @user.photo.url(:square), :class => 'img-polaroid'
+        #self_star
+      .span8
+        %h2
+          = @user.fullname || '?????'
+          -if @user.country.present?
+            %span#my_location.world_flag{:class=>"sprite-#{@user.country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> @user.country.name}
+        %p= @user.description
+        %p
+          .btn.btn-success{:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#msg_modal"} Send them a Message
+
+.row
+  .span12.skip_fullspan
+.row
+  .span12.favorites
+    .black_seperate
+    .seperate.bottom10
+    .lead 
+      Their
+      %span.redding local
+      favorites
+    #locals= render 'show_favorites', :favorites => @user.local_favorites
+
+.row.top20
+  .span12.favorites
+    .black_seperate
+    .seperate.bottom10
+    .lead
+      Their
+      %span.redding foreign
+      favorites
+
+    #foreigns= render 'show_favorites', :favorites => @user.foreign_favorites
+
+.row.top20
+  .span12
+    .black_seperate
+    .seperate.bottom10
+    .lead Reviews
+
+
+.modal.hide{:id=>"msg_modal", :tabindex=>"-1", :role=>"dialog", :'aria-labelledby'=>"myModalLabel", :'aria-hidden'=>"true"}
+  .modal-header
+    %button{:type=>"button", :class=>"close", :'data-dismiss'=>"modal", :'aria-hidden' => "true"}
+      &times;
+    %h3= "Message #{@user.first_name}"
+  .modal-body
+    = form_for(@user.received_messages.build) do |f|
+      = f.hidden_field :receiver_id
+      = f.label :title, "Subject"
+      = f.text_field :title, :class => 'required', :id => 'message_title'
+      = f.label :text, "Message"
+      = f.text_area :text, :class => 'required', :id => 'message_text'
+      = f.submit "Send your message!", :class => 'btn btn-large btn-success vbottom'
+  .modal-footer
+
+
+
+
+

@@ -29,11 +29,12 @@
       .row
         .black_seperate
         .seperate.bottom10
-        =link_to message_path(msg.id) do
-          .span12.bottom20.request_link
-            .media.row
+        .span12.bottom20.request_link
+          .media.row
+            =link_to user_path(other_search_user(msg).id) do
               .span1
                 = image_tag other_search_user(msg).photo(:thumb), :class => 'img-polaroid fav_photo inline right30'
+            =link_to message_path(msg.id) do
               .media-body.span11
                 %h4.media-heading.redding= truncate("#{other_search_user(msg).fullname}: #{msg.title}", :length => 75, :separator => ', ')
                 .muted.inline= DateTime.parse(msg.created_at).strftime('%b %-d %Y -')

@@ -38,12 +38,13 @@
     - @shoppings.each do |req|
       .black_seperate
       .seperate.bottom10
-      =link_to request_basket_path(req) do
-        .row
-          .span10.bottom20.shopping_link
-            .media.row
+      .row
+        .span10.bottom20.shopping_link
+          .media.row
+            =link_to user_path(req.requester_id) do
               .span1half
                 = image_tag req.photo, :class => 'img-polaroid fav_photo inline right30'
+            =link_to request_basket_path(req) do
               .media-body.span8
                 %h4.media-heading.redding
                   = truncate(req.title, :length => 50, :separator => ' ')

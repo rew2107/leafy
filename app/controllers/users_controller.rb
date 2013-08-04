@@ -8,5 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    gon.user_rating = @user.rating || 0
+    render :index if @user.id == current_user.id
   end
 end
