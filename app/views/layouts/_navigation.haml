@@ -1,13 +1,18 @@
-= link_to "Acquirey", root_path, :class => 'brand'
+= link_to "<span class='pink'>A</span>cquirey".html_safe, root_path, :class => 'brand'
 %ul.nav
   - if user_signed_in?
-    %li= link_to 'You', users_path
+    %li= link_to 'Profile', users_path
     %li
       = link_to 'Inbox', messages_path
       #unread_messages= @inbox_alerts.count
     %li= link_to 'Request' , request_baskets_path
     %li= link_to 'Shop' , search_request_baskets_path
-    %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+    %li.fright
+      .dropdown
+        %a.dropdown-toggle(data-toggle="dropdown" href="#")
+          = image_tag(current_user.photo(:thumb), :class => 'top_right_image img-circle')
+        %ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+          %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
   - else
     %li= link_to 'Login', '#login', {:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#login_modal"}
     =render 'shared/login_modal'

@@ -1,46 +1,58 @@
 .row.center
-  .well.fullspan
-    .span12
-      .span2half
-        = image_tag @user.photo.url(:square), :class => 'img-polaroid'
+  .span12.topbox
+    .row
+      #user_pic.span2half.text-center
+        = image_tag @user.photo.url(:larger), :class => 'img-circle'
         #self_star
-      .span8
-        %h2
+      .span12
+        %h2.intro
+          Hi! I'm
           = @user.fullname || '?????'
           -if @user.country.present?
             %span#my_location.world_flag{:class=>"sprite-#{@user.country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> @user.country.name}
-        %p= @user.description
+    .row
+      .span9.offset3
         %p
-          =link_to 'Edit your profile', edit_user_registration_path, :class => 'btn btn-success'
+          =link_to 'Edit your profile', edit_user_registration_path, :class => 'btn btn-black'
 
-.row
-  .span12.skip_fullspan
-.row
+.row.top20
   .span12.favorites
     .black_seperate
-    .seperate.bottom10
-    .lead 
-      Your
-      %span.redding local
-      favorites
+    .lead
+      ABOUT
+      %span.redding ME
+    =@user.description
+
+.row.top20
+  .span12.favorites
+    .black_seperate
+    .lead
+      MY
+      %span.redding BEAUTY ROUTINE
+    =@user.routine
+
+.row.top20
+  .span12.favorites
+    .black_seperate
+    .lead.bottom50
+      MY
+      %span.redding BEAUTY BAG
     #locals= render 'show_favorites', :favorites => @user.local_favorites
 
 .row.top20
   .span12.favorites
     .black_seperate
-    .seperate.bottom10
     .lead
-      Your
-      %span.redding foreign
-      favorites
-
-    #foreigns= render 'show_favorites', :favorites => @user.foreign_favorites
+      LOCAL
+      %span.redding BEAUTY SECRETS
+    =@user.secrets
 
 .row.top20
   .span12
     .black_seperate
-    .seperate.bottom10
-    .lead Reviews
+    .lead
+      MY
+      %span.redding REVIEWS
 
 
 

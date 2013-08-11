@@ -1,5 +1,5 @@
 .row.center
-  .well.fullspan
+  .well
     .span12
       .span2half
         = image_tag @user.photo.url(:square), :class => 'img-polaroid'
@@ -12,9 +12,6 @@
         %p= @user.description
         %p
           .btn.btn-success{:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#msg_modal"} Send them a Message
-
-.row
-  .span12.skip_fullspan
 .row
   .span12.favorites
     .black_seperate

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :description,
-    :photo, :country_id, :favorite_products_attributes, :local_favorites_attributes, :foreign_favorites_attributes, :gender, :birthdate
+    :photo, :country_id, :favorite_products_attributes, :local_favorites_attributes, :foreign_favorites_attributes, :gender, :birthdate, :routine, :secrets
 
   has_many :favorite_products, :limit => FavoriteProduct::MAX_ALLOWED_PER_TYPE * 2
   has_many :foreign_favorites, :class_name => 'FavoriteProduct', :conditions => {:foreign => true}, :limit => FavoriteProduct::MAX_ALLOWED_PER_TYPE
@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
 
   has_attached_file :photo, :default_url => '/assets/missing_person.png', :styles => {
     thumb: '64x64#',
-    square: '140x140#'
+    square: '140x140#',
+    larger: '200x200#'
   }
 
   def offers

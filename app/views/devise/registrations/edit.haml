@@ -1,16 +1,16 @@
-.row.center
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true, :method => :put }) do |f|
-    = devise_error_messages!
-    .well.fullspan
-      .span10
-        .photo_edit_span.span3.top30
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true, :method => :put }) do |f|
+  = devise_error_messages!
+  .row.center
+    .span12.topbox
+      .row
+        #user_pic.photo_edit_span.span3.top30
           = f.file_field :photo, :class => 'hidden photo_input'
           .pic
-            =image_tag current_user.photo.url(:square), :class => 'img-polaroid'
+            =image_tag current_user.photo.url(:square), :class => 'img-circle'
             .edit_text.hidden
               %span.badge edit photo
 
-        .span6
+        .span12
           .row
             .span3
               = f.label :first_name
@@ -18,48 +18,65 @@
             .span3
               = f.label :last_name
               =f.text_field :last_name
-          %p
-            = f.label :description, 'Tell us about yourself!'
-            =f.text_area :description
-    .row
-      .span10.skip_fullspan
-    .row
-      .span10
-        .lead Where are you from?
-        .span6
-          =render 'shared/country_picker'
-        .span3
-          #country_name.label.label-important= @user.country.try(:name) || 'Unknown Lands'
-
-    .row.top20
+      .row
+        .span9.offset3
+          .label_text.top20.country_question.left40
+            Your home country:
+            %span#country_name= @user.country.try(:name) || 'Unknown Lands'
+          .span6.top10
+            =render 'shared/country_picker'
+  .row.top20
+    .span12.favorites
       .black_seperate
-      .seperate.bottom20
+      .lead
+        ABOUT
+        %span.redding ME
+      = f.label :description, 'Tell us about yourself'
+      = f.text_area :description
+
+  .row.top20
+    .span12.favorites
+      .black_seperate
+      .lead
+        MY
+        %span.redding BEAUTY ROUTINE
+      = f.label :routine, 'Take us through your beauty routine'
+      = f.text_area :routine
+
+  .row.top20
+    .span12.favorites
+      .black_seperate
+      .lead
+        MY
+        %span.redding BEAUTY BAG
       .span10
-        .lead What are your favorite things from your home country?
+        .label_text What are your favorite things from your home country?
         = render 'edit_favorites', :products => :local_favorites, :f => f
 
-    .row.top20
+  .row.top20
+    .span12.favorites
       .black_seperate
-      .seperate.bottom20
-      .span10
-        .lead How about some favorite things from foreign countries?
-        = render 'edit_favorites', :products => :foreign_favorites, :f => f
+      .lead
+        LOCAL
+        %span.redding BEAUTY SECRETS
+      = f.label :secrets, 'What are some beauty secrets from your home country?'
+      = f.text_area :secrets
 
-    .row.top20
-      .black_seperate
-      .seperate.bottom30
-      .span3
-        = f.label :email
-        = f.email_field :email, :class => 'required email', :minlength => '2'
-      .span3
-        = f.label :password
-        = f.password_field :password, :autocomplete => "off", :minlength => '6'
 
-      .span3
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, :minlength => '6', :equalTo => "#user_password"
+  .row.top20
+    .black_seperate.bottom20
+    .span3
+      = f.label :email
+      = f.email_field :email, :class => 'required email', :minlength => '2'
+    .span3
+      = f.label :password
+      = f.password_field :password, :autocomplete => "off", :minlength => '6'
 
-      .row
-        .span3.offset8.top30.bottom30
-          = link_to  "cancel", users_path, :class => 'btn btn-link btn-small'
-          = f.submit "Update", :class => 'btn btn-large btn-success'
+    .span3
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, :minlength => '6', :equalTo => "#user_password"
+
+    .row
+      .span3.offset8.top30.bottom30
+        = link_to  "cancel", users_path, :class => 'btn btn-link btn-small'
+        = f.submit "Update", :class => 'btn btn-large btn-pink'

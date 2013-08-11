@@ -1,14 +1,6 @@
 @mixin user_page {
-  .fullspan{
-    position:absolute;
-    left:0;
-    right:0;
-    margin-left: 0px;
-    margin-right: 0px;
-    border-radius: 0;
-  }
-  .seperate{ border-top: 1px solid $light-green; }
   .black_seperate{ border-top: 1px solid black; }
-  .img-circle{ border: 1px solid $dark-grey;}
-  .skip_fullspan{ margin-top: 150px; height: 110px;}
+  .small_fav_photo{ border: 1px solid $dark-grey;}
+  .topbox{ background-color: $light_pink; padding: 10px 20px 10px 20px; position: relative; margin-bottom: 80px; height: 180px;}
+  #user_pic{ position: absolute; top: 75px; }
 }

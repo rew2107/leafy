@@ -4,7 +4,7 @@
   %p.lead.text-center
     get exactly what you want
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-    #centerize.text-center.row
+    .row
       .span3.control-group.offset1
         = f.label :email, {:class => 'control-label', :for => 'user_email'}
         .controls
@@ -13,7 +13,8 @@
         = f.label :password, {:class => 'control-label', :for => 'user_password'}
         .controls
           = f.password_field :password, :size => 45, :class => 'required', :minlength => '6'
-      .span3.control-group
+    .row
+      .span3.control-group.offset1
         = f.label :password_confirmation, {:class => 'control-label', :for => 'user_password_confirmation'}
         .controls
           = f.password_field :password_confirmation, :size => 45, :class => 'required', :minlength => '6', :equalTo => "#user_password"

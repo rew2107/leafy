@@ -11,12 +11,12 @@
     top: -40px;
   }
   .pic:hover{ cursor: pointer; .edit_text{ display: inline-block; }}
-  .pic{ height: 140px; width: 140px;}
   .fullspan{ height: 210px;}
-  #country_name{ line-height: normal; font-size: 25px; padding: 5px 50px; }
+  #country_name{ line-height: normal; font-weight: bold; padding: 0; }
   .favorite_pic{ margin-top: -15px; height: 150px; }
   .media{ padding-top: 20px; width: 850px;}
   .media{ textarea{ height: 65px; }}
   .media{ .edit_text{ width: 140px; top: -80px; padding: 0; }}
-  .pic{ img{ width: 140px; height: 140px;}}
+  .label_text{ font-size: 14px; font-weight: normal; line-height: 20px;}
+  .label_text.country_question{ font-size: 17px; }
 }

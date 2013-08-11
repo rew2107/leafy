@@ -1,12 +1,14 @@
 #home{
   #email_signup{
-    padding: 40px 0 20px 0;
+    margin: auto;
     position: absolute;
-    top: 25%;
-    left: 0;
-    width: 102%;
-    background-color:rgba(255,255,255,0.8);
+    top: 0; left: 0; bottom: 0; right: 0;
+    padding: 40px 0 20px 0;
+    background-color:rgba(255,255,255,0.9);
+    height: 250px;
+    width: 630px;
   }
+
   #headline{ font-size: 40px; }
   .btn{ margin-top: 12px; }
   .bottom{ margin-bottom: 70px; }
