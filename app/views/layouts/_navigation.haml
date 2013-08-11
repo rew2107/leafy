@@ -12,7 +12,5 @@
           = image_tag(current_user.photo(:thumb), :class => 'top_right_image img-circle')
         %ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
           %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
-  - else
-    %li= link_to 'Login', '#login', {:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#login_modal"}
-    =render 'shared/login_modal'
+
 

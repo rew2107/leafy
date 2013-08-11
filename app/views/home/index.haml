@@ -1,23 +1,78 @@
-#email_signup.row
-  %p.lead#headline.text-center
-    Find Makeup. Swap Styles.
-  %p.lead.text-center
-    get exactly what you want
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-    .row
-      .span3.control-group.offset1
+%aside.hundo#pic_portion
+  .picture
+#email_signup
+  .topnav_numbertwo
+    .lead#headline.text-center
+      get exactly what you want
+  #padit
+    .buttons
+      .btn.btn-pink.btn-large{:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#login_modal"} Login
+      .btn.btn-pink.btn-large{:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#signup_modal"} Signup
+
+    .top40
+      %h3 What do you seek?
+      .lead
+        %span.redding Acquirey
+        is a marketplace where you can get hard to find beauty products from the around the world. Make a request and one of our pre-screened Shoppers will find and send your items to you.
+      .lead
+        No vacation in
+        %span.redding Paris
+        coming up? 
+      .lead 
+        Can't figure out Gmarket because you don't read 
+        %span.redding Korean? 
+      .lead
+        Acquirey, allows you to make international friends who can help you get the goods you covet from far-away delivered to your door-step. 
+
+      %h3 How does it work?
+      .lead
+        Finding the things you want is
+        %span.redding super easy
+        on Acquirey!
+      %ul.lead
+        %li.top20 Set up an account.
+        %li.top10 Submit a product request.
+        %li.top10 Agree upon a price with your Shopper.
+        %li.top10 Your Shopper will buy and ship the products to you.
+      .lead
+        Get started today.
+
+.modal.hide{:id=>"signup_modal", :tabindex=>"-1", :role=>"dialog", :'aria-labelledby'=>"myModalLabel", :'aria-hidden'=>"true"}
+  .modal-header
+    %button{:type=>"button", :class=>"close", :'data-dismiss'=>"modal", :'aria-hidden' => "true"}
+      &times;
+    %h3 Signup!
+  .modal-body
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      .control-group
         = f.label :email, {:class => 'control-label', :for => 'user_email'}
         .controls
           = f.email_field :email, :size => 45, :class => 'required email', :minlength => '2', :autofocus => true
-      .span3.control-group
+      .control-group
         = f.label :password, {:class => 'control-label', :for => 'user_password'}
         .controls
           = f.password_field :password, :size => 45, :class => 'required', :minlength => '6'
-    .row
-      .span3.control-group.offset1
+      .control-group
         = f.label :password_confirmation, {:class => 'control-label', :for => 'user_password_confirmation'}
         .controls
           = f.password_field :password_confirmation, :size => 45, :class => 'required', :minlength => '6', :equalTo => "#user_password"
-      .span2
-        = f.submit "Sign up", :class => 'btn btn-large btn-pink'
+      = f.submit "Sign up", :class => 'btn btn-large btn-pink'
 
+
+.modal.hide{:id=>"login_modal", :tabindex=>"-1", :role=>"dialog", :'aria-labelledby'=>"myModalLabel", :'aria-hidden'=>"true"}
+  .modal-header
+    %button{:type=>"button", :class=>"close", :'data-dismiss'=>"modal", :'aria-hidden' => "true"}
+      &times;
+    %h3 Login!
+  .modal-body
+    #email_signin
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+        .control-group
+          = f.label :email, {:class => 'control-label', :for => 'login_user_email'}
+          .controls
+            = f.email_field :email, :size => 45, :class => 'required email', :minlength => '2', :id => 'login_user_email'
+        .control-group
+          = f.label :password, {:class => 'control-label', :for => 'login_user_password'}
+          .controls
+            = f.password_field :password, :size => 45, :class => 'required', :minlength => '6', :id => 'login_user_password'
+        = f.submit "Log in", :class => 'btn btn-pink'

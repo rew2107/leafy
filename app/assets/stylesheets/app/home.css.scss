@@ -1,23 +1,59 @@
 #home{
+  #main_nav{ margin-bottom: 0; }
   #email_signup{
-    margin: auto;
+    outline: 0;
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    padding: 40px 0 20px 0;
-    background-color:rgba(255,255,255,0.9);
-    height: 250px;
-    width: 630px;
+    left: 35%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #fff;
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
   }
 
-  #headline{ font-size: 40px; }
-  .btn{ margin-top: 12px; }
+  #padit{ padding: 10px 50px 30px 50px; }
+  .topnav_numbertwo{ height: 75px; background-color: black; color: white; padding-top: 25px; box-sizing: border-box; }
+
+  #pic_portion{ 
+    background: black;
+    position: absolute;
+    z-index: -999;
+    left: 0;
+    top: 75px;
+    width: 35%;
+    max-width: 500px;
+    height: -moz-calc(100% - 75px);
+    height: -webkit-calc(100% - 75px);
+    height: -o-calc(100% - 75px);
+    height: calc(100% - 75px);
+  }
+
+  .picture{
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    background-image: image-url("four.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -moz-box-shadow: inset -1px 0 0 rgba(0,0,0,0.3);
+    box-shadow: inset -1px 0 0 rgba(0,0,0,0.3);
+    z-index: 0;
+  }
+
+
+  #headline{ font-size: 30px; font-weight: 200; }
+  .btn{ margin-top: 12px; width: 95%; }
   .bottom{ margin-bottom: 70px; }
 
-  background: image-url("four.jpg") no-repeat top center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   #centerize{ margin-left: 10%; margin-top: 40px; width: 975px;}
+  #login_button{ margin-top: 24px;}
+  input{ width: 95%; }
+  label{ font-weight: bold; }
 
 }
