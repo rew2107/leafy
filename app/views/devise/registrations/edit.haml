@@ -6,7 +6,7 @@
         #user_pic.photo_edit_span.span3.top30
           = f.file_field :photo, :class => 'hidden photo_input'
           .pic
-            =image_tag current_user.photo.url(:square), :class => 'img-circle'
+            =image_tag current_user.photo.url(:square), :class => 'img-circle edit_image'
             .edit_text.hidden
               %span.badge edit photo
 
@@ -50,7 +50,7 @@
         MY
         %span.redding BEAUTY BAG
       .span10
-        .label_text What are your favorite things from your home country?
+        .label_text Tell us about your favorite beauty products
         = render 'edit_favorites', :products => :local_favorites, :f => f
 
   .row.top20

@@ -4,7 +4,7 @@
     .photo_edit_span
       = builder.file_field :photo, :class => 'hidden photo_input'
       .pic.right20.favorite_pic
-        =image_tag builder.object.photo.url(:square), :class => 'img-circle inline'
+        =image_tag builder.object.photo.url(:square), :class => 'img-circle inline edit_image'
         .edit_text.hidden
           %span.badge edit photo
     .media-body.inline
