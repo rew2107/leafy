@@ -32,9 +32,14 @@ class RequestBasket < ActiveRecord::Base
     '/assets/missing_person.png'
   end
 
+  def requester_name
+    requester.fullname
+  end
+
   mapping do
     indexes :id, :include_in_all => false, :index => :no
     indexes :requester_id, :as => 'requester.id', :include_in_all => false, :type => :integer
+    indexes :requester_name, :as => 'requester_name'
     indexes :photo, :as => 'requester.photo.url(:thumb)', :include_in_all => false, :index => :no
     indexes :created_at, :type => :date, :include_in_all => false, :index => :not_analyzed
     indexes :country_id, :include_in_all => false, :index => :not_analyzed, :analyzer => 'keyword'

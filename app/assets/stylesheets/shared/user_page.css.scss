@@ -1,6 +1,6 @@
 @mixin user_page {
   .black_seperate{ border-top: 1px solid black; }
   .small_fav_photo{ border: 1px solid $dark-grey;}
-  .topbox{ background-color: $light_pink; padding: 10px 20px 10px 20px; position: relative; height: 180px; box-sizing:border-box;}
+  .topbox{ background-color: $light_pink; padding: 10px 20px 10px 20px; position: relative; min-height: 180px; box-sizing:border-box;}
   #user_pic{ position: absolute; top: 75px; }
 }

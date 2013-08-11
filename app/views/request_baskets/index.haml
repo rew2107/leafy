@@ -1,18 +1,9 @@
 .row.center
-  .well.fullspan
-    .span12
-      .span2half
-        #request_icon.img-polaroid
-      .span9
-        %h2 Request Items
-        %p Not traveling to Paris for vacation? Don't have a friend coming back from Tokyo? Send a request to our sellers from your destination country of choice and have the goods you covet from far-away delivered to your door-step. Jet-set, go!
-        %p= link_to 'Create new item basket!', new_request_basket_path, :class => 'btn btn-success'
+  .span12.topbox
+    %h2 Requested Makeup Baskets
+    %p Not traveling to Paris for vacation? Don't have a friend coming back from Tokyo? Send a request to our sellers from your destination country of choice and have the goods you covet from far-away delivered to your door-step. Jet-set, go!
+    %p= link_to 'Create new makeup basket!', new_request_basket_path, :class => 'btn btn-blue'
 
-.row
-  .span12.skip_fullspan
-
-.row
-  .span12
     .lead
       Your Requests
       %span.muted.small= "#{@search.total > 0 ? @search.offset + 1 : 0} - #{@search.offset + @search.size} of #{pluralize @search.total, "request"} found"
@@ -33,30 +24,37 @@
           .row
             =render 'shared/country_picker'
 
-        .span3.top40= submit_tag :Search, :class => 'btn btn-danger', :id => 'search_button'
+        .span3.top40= submit_tag :Filter, :class => 'btn btn-white', :id => 'search_button'
 
 .row.bottom20
   .span12
     - @search.results.each do |req|
-      .black_seperate
-      .seperate.bottom10
       .row
-        .span10.bottom20.shopping_link
-          .media.row
-            =link_to user_path(req.requester_id) do
-              .span1half
-                = image_tag req.photo, :class => 'img-polaroid fav_photo inline right30'
+        .span12.request_link
+          =link_to user_path(req.requester_id) do
+            .span1
+              .row.text-center
+                = image_tag req.photo, :class => 'fav_photo inline'
+              .row
+                .small_text.black= req.requester_name
             =link_to request_basket_path(req) do
-              .media-body.span8
-                %h4.media-heading.redding
-                  = truncate(req.title, :length => 50, :separator => ' ')
-                  %span.small.muted= "$#{req.price}"
-
-                .muted.inline= DateTime.parse(req.created_at).strftime('%b %-d %Y -')
-                %span= truncate(req.description, :length => 250, :separator => ' ')
-
+              .media-body.span7.top10
+                .media-heading
+                  %strong.black TITLE:
+                  = truncate(req.title, :length => 75, :separator => ', ')
+                  %strong.black DATE:
+                  =  DateTime.parse(req.created_at).strftime('%b %-d %Y')
+                .bod
+                  %strong.black DESCRIPTION:
+                  = truncate(req.all_text, :length => 75, :separator => ' ')
+            .span2.top10
+              .row
+                .label.text-center Active
+              .row
+                est:
+                = "$#{req.price}"
 .row
-  .span5.fright.active_red
+  .span5.fright
     = paginate @search, :params => {:controller => 'request_baskets', :action => 'index'}
 
 
