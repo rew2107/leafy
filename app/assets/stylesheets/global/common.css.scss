@@ -31,8 +31,9 @@
 .help-inline{ color: $red; }
 .help-inline.valid{ color: $green; }
 .btn{ background-image: none; border-radius: 0;}
-.btn-pink{ background-color: #FCBDEA; color: black;}
+.btn-pink{ background-color: $light_pink; color: black;}
 .btn-black{ background-color: black; color: white;}
+.btn-blue{ background-color: $cool-blue; color: white;}
 .redding{ color: $pink; }
 
 @font-face {
