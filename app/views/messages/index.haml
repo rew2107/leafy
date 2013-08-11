@@ -1,44 +1,45 @@
 .row.center
-  .well.fullspan
-    .span12
-      .span2half
-        #message_icon.img-polaroid
-      .span9
-        %h2
-          Your messages
-          %span.muted.small= "#{@search.total > 0 ? @search.offset + 1 : 0} - #{@search.offset + @search.size} of #{pluralize @search.total, "message"} found"
-        =form_tag messages_path, :method => 'get' do
-          .row.top20
-            .span7
-              = text_field_tag :q, params[:q], :id => 'search_input', :placeholder => 'Keywords'
-          .row
-            .span3
-              = check_box_tag(:c_true, 1, params[:c_true], :class => 'inline')
-              = label_tag(:c_true, "Read Messages", :class => 'inline bold')
-            .span3
-              = check_box_tag(:c_false, 1, params[:c_false], :class => 'inline')
-              = label_tag(:c_false, "Unread Messages", :class => 'inline bold')
-            .span3= submit_tag :Search, :class => 'btn btn-danger', :id => 'search_button'
+  .span12.topbox
+    %h2
+      Your Inbox
+      %span.muted.small= "#{@search.total > 0 ? @search.offset + 1 : 0} - #{@search.offset + @search.size} of #{pluralize @search.total, "message"} found"
+    =form_tag messages_path, :method => 'get' do
+      .row.top20
+        .span7
+          = text_field_tag :q, params[:q], :id => 'search_input', :placeholder => 'Keywords'
+      .row
+        .span3
+          = check_box_tag(:c_true, 1, params[:c_true], :class => 'inline')
+          = label_tag(:c_true, "Read Messages", :class => 'inline bold')
+        .span3
+          = check_box_tag(:c_false, 1, params[:c_false], :class => 'inline')
+          = label_tag(:c_false, "Unread Messages", :class => 'inline bold')
+        .span3= submit_tag :Search, :class => 'btn btn-black', :id => 'search_button'
 
-.row
-  .span12.skip_fullspan
-
-.row.bottom20
+.row.bottom20.top20
   .span12
     - @search.results.each do |msg|
       .row
-        .black_seperate
-        .seperate.bottom10
-        .span12.bottom20.request_link
+        .span12.request_link{:class => msg.unread_id == current_user.id ? 'unread' : ''}
           .media.row
             =link_to user_path(other_search_user(msg).id) do
               .span1
-                = image_tag other_search_user(msg).photo(:thumb), :class => 'img-polaroid fav_photo inline right30'
+                = image_tag other_search_user(msg).photo(:thumb), :class => 'fav_photo inline right30'
+            .span1half.top10
+              .row
+                .span1half.small_text= other_search_user(msg).fullname.capitalize
+              .row
+                .span1half.small_text= DateTime.parse(msg.created_at).strftime('%b %-d %Y')
             =link_to message_path(msg.id) do
-              .media-body.span11
-                %h4.media-heading.redding= truncate("#{other_search_user(msg).fullname}: #{msg.title}", :length => 75, :separator => ', ')
-                .muted.inline= DateTime.parse(msg.created_at).strftime('%b %-d %Y -')
-                %span= truncate(msg.all_text, :length => 170, :separator => ' ')
+              .media-body.span7.top10
+                .media-heading= truncate(msg.title, :length => 75, :separator => ', ')
+                %span= truncate(msg.all_text, :length => 75, :separator => ' ')
+            .span2.top10
+              .row
+                .label.text-center Active
+              .row
+                est: $100
+
 .row
   .span5.fright.active_red
     = paginate @search, :params => {:controller => 'messages', :action => 'index'}

@@ -2,6 +2,56 @@
   @include user_page;
 
   #message_text{ width: 600px; height: 150px;}
-  #message_icon{background: image-url("email-icon.jpg") no-repeat white; display: inline-block; width: 140px; height: 140px; text-align: center; }
   .small{ font-size: 15px; font-weight: 200; }
+  .request_link, .message_content{ padding: 5px 0 5px 0; }
+  .request_link{ border-top: 1px solid $light-grey; }
+  .intro{ font-size: 25px; font-weight: 200; padding-bottom: 15px;}
+  .actual_message{ white-space: pre-line; }
+  .small_text{ text-overflow: ellipsis; white-space: nowrap; overflow-x: hidden; font-size: 12px; text-align: center;}
+  .request_link.unread{ background-color: $light-blue; font-weight: bold;}
+  .request_link:hover{ background-color: $lighter_grey; }
+  .topbox{ height: auto; }
+
+  .arrow_box {
+    position: relative;
+    background: $light-blue;
+    border: 1px solid $cool-blue;
+    min-height: 65px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 7px;
+  }
+  .arrow_box:after, .arrow_box:before {
+    right: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .arrow_box:after {
+    border-right-color: $light-blue;
+    border-width: 10px;
+    top: 50px;
+    margin-top: -30px;
+  }
+  .arrow_box:before {
+    border-right-color: $cool-blue;
+    border-width: 11px;
+    top: 55px;
+    margin-top: -36px;
+  }
+
+  .arrow_box.mine:before{
+    border-right-color: $dark-grey;
+  }
+  .arrow_box.mine:after{
+    border-right-color: $lighter-grey;
+  }
+  .arrow_box.mine{
+    background: $lighter-grey;
+    border: 1px solid $dark-grey;
+  }
 }

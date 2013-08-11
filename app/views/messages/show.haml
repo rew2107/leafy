@@ -1,41 +1,44 @@
 .row.center
-  .well.fullspan
-    .span3
-      .pic
-        =image_tag other_user(@message).photo.url(:square), :class => 'img-polaroid'
-
-    .span9
-      %h2= "Convo with #{other_user(@message).fullname}"
-      %h3= @message.title
-
-.row
-  .span12.skip_fullspan.basket
-
-  - @all_messages.each do |msg|
-    .row.bottom20
+  .span12.topbox.bottom20
+    .row
       .span12
-        .black_seperate
-        .seperate.bottom10
-          .span10.bottom20.request_link
-            .media.row
-              =link_to user_path(msg.sender.id) do
-                .span1
-                  = image_tag msg.sender.photo(:thumb), :class => 'img-polaroid fav_photo inline right30'
-              .media-body.span8
-                %h4.media-heading.redding= truncate("Message from #{msg.sender.fullname}", :length => 125, :separator => ', ')
-                .muted.inline= msg.created_at.strftime('%b %-d %Y -')
-                %span= msg.text
-  .row.bottom20.top20
-    .span12
-      .black_seperate
-      .seperate.bottom10
-        .span10.bottom20.request_link.top20
-          .media.row
-            = form_for(@new_message) do |f|
-              = f.hidden_field :parent_message_id
-              = f.hidden_field :receiver_id
-              = f.label :text, "Reply to #{other_user(@message).fullname}", {:class => 'control-label bold', :for => 'message_text'}
-              = f.text_area :text, :class => 'required', :id => 'message_text'
-              = f.submit "Send your message!", :class => 'btn btn-large btn-success vbottom left20'
+        .intro
+          Conversation with
+          %span.bold= other_user(@message).fullname
+          - if other_user(@message).country.present?
+            %span#my_location.world_flag{:class=>"sprite-#{other_user(@message).country.flag}", :'data-toggle'=>"tooltip", :rel=> 'tooltip', :title=> other_user(@message).country.name}
+
+
+.row.bottom50
+  .span9
+    .media.row.bottom30
+      .span9
+        = form_for(@new_message) do |f|
+          = f.hidden_field :parent_message_id
+          = f.hidden_field :receiver_id
+          = f.label :text, "Send a personal message to #{other_user(@message).fullname}", {:class => 'control-label bold', :for => 'message_text'}
+          = f.text_area :text, :class => 'required', :id => 'message_text', :placeholder => 'Type your message here'
+          = f.submit "Send your message!", :class => 'btn btn-large btn-pink vbottom'
+
+    - @all_messages.each do |msg|
+      .row.top20
+        =link_to user_path(msg.sender.id) do
+          .span1
+            .row.text-center
+              = image_tag msg.sender.photo(:thumb), :class => 'fav_photo inline'
+            .row
+              .small_text= msg.sender.fullname
+            .row
+              .muted.small_text= msg.created_at.strftime('%b %-d %Y')
+        .span7.arrow_box{:class => msg.sender_id == current_user.id ? 'mine' : 'theirs' }
+          %span.actual_message= msg.text
+  .span3
+    .row.text-center
+      =link_to user_path(other_user(@message)) do
+        = image_tag other_user(@message).photo.url(:larger), :class => 'img-circle'
+    .row.text-center.top10
+      .bold= other_user(@message).fullname
+    .row.text-center.top10
+      .muted= "Member since #{other_user(@message).created_at.strftime('%b %-d %Y')}"
 
 

@@ -1,7 +1,7 @@
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true, :method => :put }) do |f|
   = devise_error_messages!
   .row.center
-    .span12.topbox
+    .span12.topbox.bottom80
       .row
         #user_pic.photo_edit_span.span3.top30
           = f.file_field :photo, :class => 'hidden photo_input'
