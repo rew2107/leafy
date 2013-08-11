@@ -3,12 +3,13 @@ class RequestBasketsController < ApplicationController
 
   def index
     @user = current_user
+    params[:country_id] ||= current_user.country_id || 1
     country_id = params[:country_id]
     user = current_user
     completed = true_false_terms(:c_true,:c_false)
 
     @search = RequestBasket.search :page => (params[:page] || 1) do
-      filter(:term, :country_id => country_id) if country_id.present?
+      filter(:term, :country_id => country_id)
       filter(:term, :completed => completed) unless completed.nil?
       filter(:term, :requester_id => user.id)
       sort { by :created_at, 'desc' }
@@ -59,12 +60,14 @@ class RequestBasketsController < ApplicationController
   def search_requests
     params[:price_range] = '0,1000' unless params[:price_range].present?
     price_from, price_to = params[:price_range].split(",")
-    country_id = params[:country_id]
     q = params[:q].strip if params[:q]
+    params[:country_id] ||= current_user.country_id || 1
+    country_id = params[:country_id]
+
 
     @search = RequestBasket.search :page => (params[:page] || 1) do
       query { string q } if q.present?
-      filter(:term, :country_id => country_id) if country_id.present?
+      filter(:term, :country_id => country_id)
       filter(:term, :completed => false)
       filter(:range, :price => { from: price_from, to: price_to } ) if price_from.present? && price_to.present?
       sort { by :created_at, 'desc' }

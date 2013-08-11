@@ -1,6 +1,6 @@
 #request_baskets{
   @include user_page;
-  .redding{ color: $red; }
+  .redding{ color: $pink; }
   #request_icon{background: image-url("request_icon.png") no-repeat white; display: inline-block; width: 140px; height: 140px; text-align: center; }
   .area{ width: 90%; height: 100px;}
   #country_name{ line-height: normal; padding: 5px 0 5px 0; width: 150px; text-align: center;}

@@ -10,7 +10,7 @@
   .small_text{ text-overflow: ellipsis; white-space: nowrap; overflow-x: hidden; font-size: 12px; text-align: center;}
   .request_link.unread{ background-color: $light-blue; font-weight: bold;}
   .request_link:hover{ background-color: $lighter_grey; }
-  .topbox{ height: auto; }
+  .topbox{ height: auto; min-height: 20px;}
 
   .arrow_box {
     position: relative;

@@ -1,57 +1,33 @@
 .row.center
-  .well.fullspan
-    .span12
+  .span12.topbox
+    %h2
+      Browse Makeup Basket Requests
+      %span.muted.small= "#{@search.total > 0 ? @search.offset + 1 : 0} - #{@search.offset + @search.size} of #{pluralize @search.total, "request"} found"
+    =form_tag search_request_baskets_path, :method => 'get' do
       .row
-        .span2half
-          #shopping_icon.img-polaroid
-
-        .span9
-          %h2 
-            Shop Requests
-            %span.muted.small= "#{@search.total > 0 ? @search.offset + 1 : 0} - #{@search.offset + @search.size} of #{pluralize @search.total, "request"} found"
-          =form_tag search_request_baskets_path, :method => 'get' do
-            .row
-              .span4
-                = text_field_tag :q, params[:q], :id => 'search_input', :placeholder => 'Keywords'
-              .span5.neg_eight
-                .row.green
-                  Price range:
-                  %span#slider_left= "$#{params[:price_range].split(',').first}"
-                  %span -
-                  %span#slider_right= "$#{params[:price_range].split(',').last}"
-                .row
-                  %input#price_slide(name='price_range' type="text" value="" data-slider-min="0" data-slider-max="1000" data-slider-step="5" data-slider-value="[#{params[:price_range]}]" data-slider-orientation="horizontal" data-slider-selection="after"data-slider-tooltip="hide")
-            .row
-              .span5.category_filter
-                %h5 
-                  Choose a country:
-                  %span#country_name.redding Unknown Lands
-                .row
-                  =render 'shared/country_picker'
-              .span3.top40= submit_tag :Search, :class => 'btn btn-danger', :id => 'search_button'
-
-.row
-  .span12.skip_fullspan
+        .span4
+          = text_field_tag :q, params[:q], :id => 'search_input', :placeholder => 'Keywords'
+        .span5.neg_eight
+          .row.green
+            Price range:
+            %span#slider_left= "$#{params[:price_range].split(',').first}"
+            %span -
+            %span#slider_right= "$#{params[:price_range].split(',').last}"
+          .row
+            %input#price_slide(name='price_range' type="text" value="" data-slider-min="0" data-slider-max="1000" data-slider-step="5" data-slider-value="[#{params[:price_range]}]" data-slider-orientation="horizontal" data-slider-selection="after"data-slider-tooltip="hide")
+      .row
+        .span5.category_filter
+          %h5 
+            Choose a country:
+            %span#country_name Unknown Lands
+          .row
+            =render 'shared/country_picker'
+        .span3.top40= submit_tag :Search, :class => 'btn btn-blue', :id => 'search_button'
 
 .row.bottom20
   .span12
     - @shoppings.each do |req|
-      .black_seperate
-      .seperate.bottom10
-      .row
-        .span10.bottom20.shopping_link
-          .media.row
-            =link_to user_path(req.requester_id) do
-              .span1half
-                = image_tag req.photo, :class => 'img-polaroid fav_photo inline right30'
-            =link_to request_basket_path(req) do
-              .media-body.span8
-                %h4.media-heading.redding
-                  = truncate(req.title, :length => 50, :separator => ' ')
-                  %span.small.muted= "$#{req.price}"
-
-                .muted.inline= DateTime.parse(req.created_at).strftime('%b %-d %Y -')
-                %span= truncate(req.description, :length => 250, :separator => ' ')
+      =render 'shared/request_link', :req => req
 
 .row
   .span5.fright.active_red

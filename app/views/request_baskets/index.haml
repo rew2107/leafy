@@ -20,7 +20,7 @@
         .span5.category_filter
           %h5 
             Choose a country:
-            %span#country_name.redding Unknown Lands
+            %span#country_name Unknown Lands
           .row
             =render 'shared/country_picker'
 
@@ -29,30 +29,7 @@
 .row.bottom20
   .span12
     - @search.results.each do |req|
-      .row
-        .span12.request_link
-          =link_to user_path(req.requester_id) do
-            .span1
-              .row.text-center
-                = image_tag req.photo, :class => 'fav_photo inline'
-              .row
-                .small_text.black= req.requester_name
-            =link_to request_basket_path(req) do
-              .media-body.span7.top10
-                .media-heading
-                  %strong.black TITLE:
-                  = truncate(req.title, :length => 75, :separator => ', ')
-                  %strong.black DATE:
-                  =  DateTime.parse(req.created_at).strftime('%b %-d %Y')
-                .bod
-                  %strong.black DESCRIPTION:
-                  = truncate(req.all_text, :length => 75, :separator => ' ')
-            .span2.top10
-              .row
-                .label.text-center Active
-              .row
-                est:
-                = "$#{req.price}"
+      =render 'shared/request_link', :req => req
 .row
   .span5.fright
     = paginate @search, :params => {:controller => 'request_baskets', :action => 'index'}
