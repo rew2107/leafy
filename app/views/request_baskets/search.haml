@@ -24,7 +24,7 @@
             =render 'shared/country_picker'
         .span3.top40= submit_tag :Search, :class => 'btn btn-blue', :id => 'search_button'
 
-.row.bottom20
+.row.bottom20.top20
   .span12
     - @shoppings.each do |req|
       =render 'shared/request_link', :req => req

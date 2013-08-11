@@ -43,9 +43,11 @@
   #new_message{ margin: 0; }
 
   .request_link, .message_content{ padding: 5px 0 5px 0; }
-  .request_link{ border-top: 1px solid $light-grey; }
+  .request_link:nth-child(even){ background-color: $lighter-grey; }
   .request_link.unread{ background-color: $light-blue; font-weight: bold;}
-  .request_link:hover{ background-color: $lighter_grey; }
+  .request_link:hover{ background-color: $light-pink; }
   .small_text{ text-overflow: ellipsis; white-space: nowrap; overflow-x: hidden; font-size: 12px; text-align: center;}
   a{ .black{ color: black; }}
+  .shopping_link:nth-child(even){ background-color: $lighter_grey; }
+  .shopping_link{ padding: 10px 0 10px 0; }
 }
