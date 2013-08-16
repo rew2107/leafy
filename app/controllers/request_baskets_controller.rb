@@ -1,5 +1,6 @@
 class RequestBasketsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :check_if_shopper, :only => [:search]
 
   def index
     @user = current_user
@@ -29,13 +30,15 @@ class RequestBasketsController < ApplicationController
     @request = RequestBasket.find(params[:id])
     if @request.requester_id == current_user.id
       render 'owned_show'
-    else
+    elsif current_user.shopper
       @message = current_user.sent_messages.build(
         :receiver_id => @request.requester_id,
         :title => "Message about request: #{request_basket_url(@request)}",
         :text => "I am interested in fulfilling request #{request_basket_url(@request)}"
       )
       @bid = current_user.bids.build(:request_basket_id => @request.id, :amount => @request.price)
+    else
+      render 'shopper_signup'
     end
   end
 
@@ -71,6 +74,13 @@ class RequestBasketsController < ApplicationController
       filter(:term, :completed => false)
       filter(:range, :price => { from: price_from, to: price_to } ) if price_from.present? && price_to.present?
       sort { by :created_at, 'desc' }
+    end
+  end
+
+  def check_if_shopper
+    unless current_user.shopper
+      render 'shopper_signup'
+      false
     end
   end
 end

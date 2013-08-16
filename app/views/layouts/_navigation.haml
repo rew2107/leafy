@@ -5,7 +5,10 @@
     %li
       = link_to 'Inbox', messages_path
       #unread_messages= @inbox_alerts.count
-    %li= link_to 'Browse Requests' , search_request_baskets_path
+    - if current_user.shopper
+      %li= link_to 'Browse Requests' , search_request_baskets_path
+    - else
+      %li= link_to 'Become a Shopper' , search_request_baskets_path
     %li.fright
       .dropdown
         %a.dropdown-toggle(data-toggle="dropdown" href="#")
