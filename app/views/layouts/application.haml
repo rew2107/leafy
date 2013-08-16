@@ -13,13 +13,14 @@
     = csrf_meta_tags
     = yield(:head)
   %body{:id => controller_path.gsub('/','_')}
-    = render 'layouts/messages'
     %header.navbar.navbar-static-top#main_nav
       %nav
         .container
           = render 'layouts/navigation'
+        .border-top
     #main{:role => "main"}
       .container
+        = render 'layouts/messages'
         = yield
         %footer
 
