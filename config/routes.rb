@@ -16,5 +16,12 @@ Leafy::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => {:registrations => "registrations"}, :path => "userinfo"
+  devise_for :users, :controllers => {
+    :registrations => "registrations",
+    :confirmations => 'confirmations',
+  }, :path => "userinfo"
+
+  devise_scope :user do
+    put "/confirm" => "confirmations#confirm"
+  end
 end

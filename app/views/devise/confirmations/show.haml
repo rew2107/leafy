@@ -1,0 +1,14 @@
+.text-center= devise_error_messages!
+#sign-in.text-center
+  %h1 One more step!
+  .lead Create a password to securely access your account
+  = form_for(resource, :as => resource_name, :url => confirm_path) do |f|
+    = f.hidden_field :confirmation_token
+    .row
+      = f.password_field :password, :placeholder => 'Password'
+    .row
+      = f.password_field :password_confirmation, :placeholder => 'Password Confirmation'
+    .buttons
+      = f.submit "Sign up", :class =>"btn btn-large btn-pink"
+  .small-text.foot
+    By clicking "sign up" you agree to our Terms of Service and Privacy Policy.
