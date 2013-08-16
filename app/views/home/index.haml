@@ -7,7 +7,7 @@
   #padit
     .buttons
       .btn.btn-pink.btn-large{:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#login_modal"} Login
-      .btn.btn-pink.btn-large{:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#signup_modal"} Signup
+      .btn.btn-pink.btn-large{:role => 'button', :'data-toggle'=>"modal", :'data-target'=>"#signup_modal"} Request Invite
 
     .top40
       %h3 What do you seek?
@@ -41,22 +41,16 @@
   .modal-header
     %button{:type=>"button", :class=>"close", :'data-dismiss'=>"modal", :'aria-hidden' => "true"}
       &times;
-    %h3 Signup!
+    %h3 Request Invite!
   .modal-body
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       .control-group
         = f.label :email, {:class => 'control-label', :for => 'user_email'}
         .controls
           = f.email_field :email, :size => 45, :class => 'required email', :minlength => '2', :autofocus => true
-      .control-group
-        = f.label :password, {:class => 'control-label', :for => 'user_password'}
-        .controls
-          = f.password_field :password, :size => 45, :class => 'required', :minlength => '6'
-      .control-group
-        = f.label :password_confirmation, {:class => 'control-label', :for => 'user_password_confirmation'}
-        .controls
-          = f.password_field :password_confirmation, :size => 45, :class => 'required', :minlength => '6', :equalTo => "#user_password"
-      = f.submit "Sign up", :class => 'btn btn-large btn-pink'
+      = f.submit "Request Invite", :class => 'btn btn-large btn-pink'
+  .modal-footer
+    We'll send you an email when we approve your request.
 
 
 .modal.hide{:id=>"login_modal", :tabindex=>"-1", :role=>"dialog", :'aria-labelledby'=>"myModalLabel", :'aria-hidden'=>"true"}

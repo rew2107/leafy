@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :description,
     :photo, :country_id, :favorite_products_attributes, :local_favorites_attributes, :foreign_favorites_attributes, :gender, :birthdate, :routine, :secrets
@@ -31,6 +31,14 @@ class User < ActiveRecord::Base
 
   def offers
     Bid.where(:request_basket_id => self.request_baskets.map(&:id))
+  end
+
+  def password_required?
+    (!persisted? || !password.nil? || !password_confirmation.nil?) if confirmed?
+  end
+
+  def email_required?
+    true
   end
 
   def fullname
