@@ -1,5 +1,10 @@
-<p>Welcome to Acquirey!</p>
+<% if @resource.unconfirmed_email.present? %>
+  <p>We need to verify your new email address on Acquirey</p>
+  <p>You can confirm your email by clicking the link below:</p>
+  <p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), :class => 'button' %></p>
+<% else %>
+  <p>Welcome to Acquirey!</p>
 
-<p>Your invite has been approved! You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+  <p>Your invite has been approved! You can confirm your account email through the link below:</p>
+  <p><%= link_to 'Finish Sign Up', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), :class => 'button' %></p>
+<% end %>

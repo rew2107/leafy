@@ -68,13 +68,6 @@
     .span3
       = f.label :email
       = f.email_field :email, :class => 'required email', :minlength => '2'
-    .span3
-      = f.label :password
-      = f.password_field :password, :autocomplete => "off", :minlength => '6'
-
-    .span3
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation, :minlength => '6', :equalTo => "#user_password"
 
     .row
       .span3.offset8.top30.bottom30
