@@ -1,0 +1,18 @@
+.text-center
+  %h2 Sign in
+
+.text-center.top30
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    .row
+      = f.label :email
+      = f.email_field :email, :autofocus => true
+
+    .row
+      = f.label :password
+      = f.password_field :password
+
+    .row.top30
+      = f.submit "Sign in", :class => 'btn btn-large btn-pink'
+
+.text-center.top50
+  = render "devise/shared/links"

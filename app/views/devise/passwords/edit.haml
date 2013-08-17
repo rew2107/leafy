@@ -1,0 +1,21 @@
+.text-center
+  %h2 Change your password
+
+.text-center.top30
+  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+    .row
+      .text-center= devise_error_messages!
+      = f.hidden_field :reset_password_token
+
+    .row
+      = f.label :password, "New password"
+      = f.password_field :password, :autofocus => true
+
+    .row.top10
+      = f.label :password_confirmation, "Confirm new password"
+      = f.password_field :password_confirmation
+
+    .row.top30
+      = f.submit "Change my password", :class => 'btn btn-large btn-pink'
+
+.text-center.top50= render "devise/shared/links"

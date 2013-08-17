@@ -70,3 +70,6 @@
           .controls
             = f.password_field :password, :size => 45, :class => 'required', :minlength => '6', :id => 'login_user_password'
         = f.submit "Log in", :class => 'btn btn-pink'
+  .modal-footer
+    = link_to "Forgot your password?", new_password_path(resource_name)
+
