@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816203832) do
+ActiveRecord::Schema.define(:version => 20130817172726) do
 
   create_table "bids", :force => true do |t|
     t.integer  "amount"
@@ -72,6 +72,19 @@ ActiveRecord::Schema.define(:version => 20130816203832) do
     t.datetime "updated_at",         :null => false
     t.integer  "request_basket_id"
     t.integer  "price"
+  end
+
+  create_table "shopper_applications", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "zipcode"
+    t.text     "why_question"
+    t.text     "other_accounts_question"
+    t.text     "shipping_question"
+    t.integer  "user_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "users", :force => true do |t|

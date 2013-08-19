@@ -53,7 +53,6 @@ class RequestBasketsController < ApplicationController
       flash[:notice] = 'Your request has been posted!'
       redirect_to :action => :index
     else
-      puts @request.inspect
       render 'new'
     end
   end
@@ -79,7 +78,7 @@ class RequestBasketsController < ApplicationController
 
   def check_if_shopper
     unless current_user.shopper
-      render 'shopper_signup'
+      redirect_to shopper_applications_path
       false
     end
   end

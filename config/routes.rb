@@ -8,6 +8,7 @@ Leafy::Application.routes.draw do
   resources :users, :only => [:index, :show]
   resources :messages, :only => [:create, :index, :show]
   resources :bids, :only => [:create]
+  resources :shopper_applications, :only => [:index, :create]
   resources :request_baskets do
     collection do 
       get :search

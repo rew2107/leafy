@@ -8,7 +8,7 @@
     - if current_user.shopper
       %li= link_to 'Browse Requests' , search_request_baskets_path
     - else
-      %li= link_to 'Become a Shopper' , search_request_baskets_path
+      %li= link_to 'Become a Shopper' , shopper_applications_path
     %li.fright
       .dropdown
         %a.dropdown-toggle(data-toggle="dropdown" href="#")

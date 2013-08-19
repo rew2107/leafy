@@ -1,0 +1,42 @@
+.row.center
+  .span12.topbox.bottom30
+    %h2 Sign up to be one of our beauty shopppers
+    %p Hi! Lets get started setting you up as a shopper. As a shopper you can browse other users' requests for makeup and fulfil them earning yourself a percentage. Below are the questions we need to get answered. Let get started!
+
+=form_for(@shopper_application) do |f|
+  .black_seperate
+  .lead 
+    Your
+    %span.redding information
+  .row
+    .span3
+      = f.label :first_name
+      =f.text_field :first_name, :value => current_user.first_name
+    .span3
+      = f.label :last_name
+      =f.text_field :last_name, :value => current_user.last_name
+    .span3
+      = f.label :zipcode, 'Zipcode (if applicable)'
+      =f.text_field :zipcode
+
+  .row.top20
+    .span12
+      .black_seperate
+      = f.label :why_question, 'Tell us briefly why you would like to <span class="redding"> become a shopper!</span>'.html_safe, :class => 'lead'
+      = f.text_area :why_question
+  .row.top20
+    .span12
+      .black_seperate
+      = f.label :other_accounts_question, 'Share with us any <span class="redding">amazon/etsy/ebay/etc.. accounts you have.</span>'.html_safe, :class => 'lead'
+      = f.text_area :other_accounts_question
+  .row.top20
+    .span12
+      .black_seperate
+      = f.label :shipping_question, 'Do you have experience with <span class="redding">international shipping and handling?</span>'.html_safe, :class => 'lead'
+      = f.text_area :shipping_question
+
+  .row.top20.bottom30
+    .span11
+      = f.submit 'Submit', :class => 'btn btn-large btn-pink'
+
+

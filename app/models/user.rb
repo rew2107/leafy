@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :sent_messages, :class_name => 'Message', :foreign_key => :sender_id
   has_many :received_messages, :class_name => 'Message', :foreign_key => :receiver_id
   belongs_to :country
+  has_one :shopper_application
   has_many :bids
 
   accepts_nested_attributes_for :favorite_products, :reject_if => lambda { |a| a[:title].blank? }, :allow_destroy => true

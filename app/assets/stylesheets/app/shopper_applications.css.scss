@@ -1,0 +1,7 @@
+#shopper_applications{
+  @include user_page;
+  .redding{ color: $pink; }
+  .small{ font-size: 15px; }
+  textarea{ height: 100px; width: 600px; }
+  .topbox{ min-height: 0; }
+}
