@@ -1,12 +1,14 @@
 class Message < ActiveRecord::Base
   include Tire::Model::Search
-  attr_accessible :text, :parent_message_id, :read, :sender_id, :receiver_id, :title
+  attr_accessible :text, :parent_message_id, :read, :sender_id, :receiver_id, :title, :request_basket_id
   belongs_to :sender, :class_name => 'User'
   belongs_to :receiver, :class_name => 'User'
   belongs_to :parent_message, :class_name => 'Message', :touch => true
+  belongs_to :request_basket
   has_many :messages, :foreign_key => :parent_message_id, :dependent => :destroy
 
-  validates_presence_of :receiver_id, :sender_id, :text
+
+  validates_presence_of :receiver_id, :sender_id, :text, :request_basket_id
 
   after_save :update_tire
   after_destroy :update_tire

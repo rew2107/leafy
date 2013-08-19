@@ -9,6 +9,7 @@ class RequestBasket < ActiveRecord::Base
   belongs_to :shopper, :class_name => 'User'
   has_many :requests
   has_many :bids
+  has_many :messages
 
   validates_presence_of :requester_id, :country_id
   validates :requester, :associated => true

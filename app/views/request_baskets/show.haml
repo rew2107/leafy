@@ -53,6 +53,7 @@
   .modal-body
     = form_for(@message) do |f|
       = f.hidden_field :receiver_id
+      = f.hidden_field :request_basket_id
       = f.text_field :title, :class => 'required', :id => 'message_title'
       = f.label :text, "message #{@request.requester.first_name} about becoming a shopper for this basket", {:class => 'control-label', :for => 'challenge_note'}
       = f.text_area :text, :class => 'required', :id => 'message_text'

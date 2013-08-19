@@ -14,6 +14,7 @@
     .media.row.bottom30
       .span9
         = form_for(@new_message) do |f|
+          = f.hidden_field :request_basket_id
           = f.hidden_field :parent_message_id
           = f.hidden_field :receiver_id
           = f.label :text, "Send a personal message to #{other_user(@message).fullname}", {:class => 'control-label bold', :for => 'message_text'}

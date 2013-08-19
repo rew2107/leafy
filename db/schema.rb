@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130817172726) do
+ActiveRecord::Schema.define(:version => 20130819003952) do
 
   create_table "bids", :force => true do |t|
     t.integer  "amount"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130817172726) do
     t.datetime "updated_at",                           :null => false
     t.integer  "receiver_id"
     t.string   "title"
+    t.integer  "request_basket_id"
   end
 
   create_table "request_baskets", :force => true do |t|

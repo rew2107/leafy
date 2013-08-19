@@ -32,6 +32,7 @@ class RequestBasketsController < ApplicationController
       render 'owned_show'
     elsif current_user.shopper
       @message = current_user.sent_messages.build(
+        :request_basket_id => @request.id,
         :receiver_id => @request.requester_id,
         :title => "Message about request: #{request_basket_url(@request)}",
         :text => "I am interested in fulfilling request #{request_basket_url(@request)}"
@@ -53,6 +54,7 @@ class RequestBasketsController < ApplicationController
       flash[:notice] = 'Your request has been posted!'
       redirect_to :action => :index
     else
+      flash[:error] = "Your request could not be created. #{@request.errors.full_messages.uniq.to_sentence}"
       render 'new'
     end
   end

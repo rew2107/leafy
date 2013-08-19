@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
     @message.messages.where(:receiver_id => current_user.id).update_all(:read => true)
     @message.update_attributes(:read => true) if @message.receiver_id == current_user.id
     @all_messages = @message.messages.order('created_at DESC') << @message
-    @new_message = @message.messages.build(:receiver_id => other_user(@message).id, :parent_message_id => @message.id)
+    @new_message = @message.messages.build(:request_basket_id => @message.request_basket_id, :receiver_id => other_user(@message).id, :parent_message_id => @message.id)
   end
 
   def create
