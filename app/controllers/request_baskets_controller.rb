@@ -39,7 +39,7 @@ class RequestBasketsController < ApplicationController
       )
       @bid = current_user.bids.build(:request_basket_id => @request.id, :amount => @request.price)
     else
-      render 'shopper_signup'
+      check_if_shopper
     end
   end
 
@@ -52,7 +52,7 @@ class RequestBasketsController < ApplicationController
     @request = current_user.request_baskets.build(params[:request_basket])
     if @request.save
       flash[:notice] = 'Your request has been posted!'
-      redirect_to :action => :index
+      redirect_to :action => :show, :id => @request.id
     else
       flash[:error] = "Your request could not be created. #{@request.errors.full_messages.uniq.to_sentence}"
       render 'new'

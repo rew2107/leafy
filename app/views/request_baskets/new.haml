@@ -21,7 +21,7 @@
             .span6.lead.bottom10 Where are you looking for these items?
             .row
               .span6
-                =render 'shared/country_picker'
+                =render 'shared/country_picker', :f => f
               .span3
                 = f.submit "Create new basket!", :class => 'btn btn-large btn-success'
 

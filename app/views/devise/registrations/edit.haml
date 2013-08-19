@@ -24,7 +24,7 @@
             Your home country:
             %span#country_name= @user.country.try(:name) || 'Unknown Lands'
           .span6.top10
-            =render 'shared/country_picker'
+            =render 'shared/country_picker', :f => f
   .row.top20
     .span12.favorites
       .black_seperate

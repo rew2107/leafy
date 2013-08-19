@@ -30,7 +30,7 @@
           .span6.small.bottom10 Where are you looking for this item?
           .row
             .span6
-              =render 'shared/country_picker'
+              =render 'shared/country_picker', :f => f
             .span3
               = f.submit "Create new request!", :class => 'btn btn-success'
 
