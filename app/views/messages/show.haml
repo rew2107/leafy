@@ -42,4 +42,8 @@
     .row.text-center.top10
       .muted= "Member since #{other_user(@message).created_at.strftime('%b %-d %Y')}"
 
+    .row.top20.lead.text-center
+      Messaging about
+      = link_to 'request', request_basket_path(@message.request_basket_id)
+
 
