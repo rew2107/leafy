@@ -1,4 +1,4 @@
 AWS.config({
-  :access_key_id => 'AKIAJKVQMLQLEQFHVZ5A',
-  :secret_access_key => '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'
+  :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+  :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
 })
