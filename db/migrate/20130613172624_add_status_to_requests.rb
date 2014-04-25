@@ -1,5 +1,5 @@
 class AddStatusToRequests < ActiveRecord::Migration
   def change
-    add_column :requests, :status, :string, :default => Request::ACTIVE
+    add_column :requests, :status, :string, :default => 'active'
   end
 end
