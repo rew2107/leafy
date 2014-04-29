@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :trackable, :validatable, :confirmable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :description,
     :photo, :country_id, :favorite_products_attributes, :local_favorites_attributes, :foreign_favorites_attributes, :gender, :birthdate, :routine, :secrets
